@@ -8,16 +8,19 @@
 import UIKit
 
 
-class SelectedCategoriesVC: UICollectionViewController {
-    let selectedCategoriesVModel = SelectedCategoriesVModel()
+class ListMealsVC: UICollectionViewController {
+    let listMealsViewModel = ListMealsViewModel()
     var cellHeight: CGFloat = 128
     let pad: CGFloat = 40
+    var selectedCategory = ""
    // let itemsPerRow: CGFloat = 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         
+        
         configureCollectionView()
+        listMealsViewModel.listMealsVC = self
+        listMealsViewModel.loadData(categoryId: selectedCategory)
     }
     
     func configureCollectionView() {
@@ -31,17 +34,24 @@ class SelectedCategoriesVC: UICollectionViewController {
         collectionView.showsVerticalScrollIndicator = true
     }
     
+    func updateData() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+        
+    }
+    
     // MARK: UICollectionViewDataSource
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         
-        return selectedCategoriesVModel.getCount()
+        return listMealsViewModel.getCount()
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return selectedCategoriesVModel.getCount()
+        return listMealsViewModel.getCount()
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -56,49 +66,13 @@ class SelectedCategoriesVC: UICollectionViewController {
 //        cell.clipsToBounds = false
         cell.configureUI()
         let row = indexPath.row
-        cell.set(model: selectedCategoriesVModel.getCategory(index: row))
+        cell.setWithWebImage(model: listMealsViewModel.getMeal(index: row))
         
         return cell
     }
-    
-    
-    
-    
-    
-    // MARK: UICollectionViewDelegate
-    
-    /*
-     // Uncomment this method to specify if the specified item should be highlighted during tracking
-     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-     
-     }
-     */
-    
 }
 
-extension SelectedCategoriesVC: UICollectionViewDelegateFlowLayout {
+extension ListMealsVC: UICollectionViewDelegateFlowLayout {
  
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)

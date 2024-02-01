@@ -18,10 +18,21 @@ class ListIconCategoryVC: UIViewController {
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = true
         registerCell()
+        
+       
+        
     }
     
     func registerCell() {
         tableView.register(ListIconCell.self, forCellReuseIdentifier: "listIconCell")
+    }
+    
+    func openMealVC(indexPath: IndexPath) {
+        guard let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "selectedCategoriesVC") as? ListMealsVC else { return }
+        
+        let category = categoriesViewModel.getCategory(index: indexPath.row)
+        secondViewController.selectedCategory = category.categoryId
+        self.navigationController?.pushViewController(secondViewController, animated: true)
     }
 }
 
@@ -29,7 +40,6 @@ extension ListIconCategoryVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categoriesViewModel.getCount()
     }
-    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -48,11 +58,7 @@ extension ListIconCategoryVC: UITableViewDelegate, UITableViewDataSource {
 
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             print("tap cell number \(indexPath.row).")
-            guard let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "selectedCategoriesVC") as? SelectedCategoriesVC else { return }
-            self.navigationController?.pushViewController(secondViewController, animated: true)
-            
- 
-        
+            openMealVC(indexPath: indexPath)
     }
 }
 

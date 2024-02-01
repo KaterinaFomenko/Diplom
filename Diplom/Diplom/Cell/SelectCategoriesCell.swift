@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class SelectCategoriesCell: UICollectionViewCell {
     
@@ -38,6 +39,13 @@ class SelectCategoriesCell: UICollectionViewCell {
     func set(model: CategoriesModel) {
         titleLabel.text = model.title
         imageView.image = UIImage(named: model.imageName)
+        labelBGView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+    }
+    
+    func setWithWebImage(model: CategoriesModel) {
+        titleLabel.text = model.title
+        imageView.sd_setImage(with: URL(string: model.imageName), placeholderImage: UIImage(named: "Placeholder"))
+
         labelBGView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
     }
     

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		066ABA252B62AD5700DB54C6 /* SelectedCategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066ABA242B62AD5700DB54C6 /* SelectedCategoriesVC.swift */; };
+		066ABA252B62AD5700DB54C6 /* ListMealsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066ABA242B62AD5700DB54C6 /* ListMealsVC.swift */; };
 		066ABA342B62B5C100DB54C6 /* SelectCategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066ABA332B62B5C100DB54C6 /* SelectCategoriesCell.swift */; };
 		066ABA3B2B62D3CC00DB54C6 /* SelectedCategoriesVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066ABA3A2B62D3CC00DB54C6 /* SelectedCategoriesVModel.swift */; };
 		066ABA422B62D65C00DB54C6 /* CategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066ABA412B62D65C00DB54C6 /* CategoriesModel.swift */; };
@@ -20,10 +20,13 @@
 		06CD9B882B64F2E400613895 /* ListIconCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD9B872B64F2E400613895 /* ListIconCategoryVC.swift */; };
 		06CD9B912B65402700613895 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 06CD9B902B65402700613895 /* SnapKit */; };
 		06CD9BA52B68351300613895 /* ListMealsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD9BA42B68351300613895 /* ListMealsViewModel.swift */; };
+		06CD9BAD2B68E6CE00613895 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD9BAC2B68E6CE00613895 /* ApiManager.swift */; };
+		06CD9BB82B6BB12900613895 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 06CD9BB72B6BB12900613895 /* SDWebImage */; };
+		06CD9BBA2B6BB12A00613895 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 06CD9BB92B6BB12A00613895 /* SDWebImageMapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		066ABA242B62AD5700DB54C6 /* SelectedCategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoriesVC.swift; sourceTree = "<group>"; };
+		066ABA242B62AD5700DB54C6 /* ListMealsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMealsVC.swift; sourceTree = "<group>"; };
 		066ABA332B62B5C100DB54C6 /* SelectCategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoriesCell.swift; sourceTree = "<group>"; };
 		066ABA3A2B62D3CC00DB54C6 /* SelectedCategoriesVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoriesVModel.swift; sourceTree = "<group>"; };
 		066ABA412B62D65C00DB54C6 /* CategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
@@ -37,6 +40,7 @@
 		06CD9B7F2B64E76300613895 /* ListIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIconCell.swift; sourceTree = "<group>"; };
 		06CD9B872B64F2E400613895 /* ListIconCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIconCategoryVC.swift; sourceTree = "<group>"; };
 		06CD9BA42B68351300613895 /* ListMealsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMealsViewModel.swift; sourceTree = "<group>"; };
+		06CD9BAC2B68E6CE00613895 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +48,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06CD9BB82B6BB12900613895 /* SDWebImage in Frameworks */,
+				06CD9BBA2B6BB12A00613895 /* SDWebImageMapKit in Frameworks */,
 				06CD9B912B65402700613895 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,30 +57,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		066ABA3D2B62D3D600DB54C6 /* ListCategoriesVC */ = {
-			isa = PBXGroup;
-			children = (
-				066ABA3F2B62D56400DB54C6 /* VC */,
-				066ABA3E2B62D3EE00DB54C6 /* ViewModel */,
-			);
-			path = ListCategoriesVC;
-			sourceTree = "<group>";
-		};
-		066ABA3E2B62D3EE00DB54C6 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				066ABA3A2B62D3CC00DB54C6 /* SelectedCategoriesVModel.swift */,
-				066ABA412B62D65C00DB54C6 /* CategoriesModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		066ABA3F2B62D56400DB54C6 /* VC */ = {
+		066ABA3D2B62D3D600DB54C6 /* ListIconCategoriesVC */ = {
 			isa = PBXGroup;
 			children = (
 				06CD9B872B64F2E400613895 /* ListIconCategoryVC.swift */,
+				066ABA3A2B62D3CC00DB54C6 /* SelectedCategoriesVModel.swift */,
 			);
-			path = VC;
+			path = ListIconCategoriesVC;
 			sourceTree = "<group>";
 		};
 		066ABA402B62D5A900DB54C6 /* Cell */ = {
@@ -105,14 +94,17 @@
 		06AB9BE62B460020000E229C /* Diplom */ = {
 			isa = PBXGroup;
 			children = (
+				06CD9BAA2B68E64800613895 /* Networking */,
 				06AB9BE72B460020000E229C /* AppDelegate.swift */,
 				06AB9BE92B460020000E229C /* SceneDelegate.swift */,
 				06AB9BED2B460020000E229C /* Main.storyboard */,
 				06AB9BF02B460024000E229C /* Assets.xcassets */,
 				06AB9BF22B460024000E229C /* LaunchScreen.storyboard */,
 				06AB9BF52B460024000E229C /* Info.plist */,
+				066ABA3D2B62D3D600DB54C6 /* ListIconCategoriesVC */,
 				06CD9B9E2B68320300613895 /* ListMealsVC */,
-				066ABA3D2B62D3D600DB54C6 /* ListCategoriesVC */,
+				06CD9BC02B6BBE9300613895 /* DetailVC */,
+				06CD9BBD2B6BB7EE00613895 /* Model */,
 				066ABA402B62D5A900DB54C6 /* Cell */,
 			);
 			path = Diplom;
@@ -121,26 +113,33 @@
 		06CD9B9E2B68320300613895 /* ListMealsVC */ = {
 			isa = PBXGroup;
 			children = (
-				06CD9BA02B68330E00613895 /* ViewModel */,
-				06CD9B9F2B68329B00613895 /* VC */,
+				06CD9BA42B68351300613895 /* ListMealsViewModel.swift */,
+				066ABA242B62AD5700DB54C6 /* ListMealsVC.swift */,
 			);
 			path = ListMealsVC;
 			sourceTree = "<group>";
 		};
-		06CD9B9F2B68329B00613895 /* VC */ = {
+		06CD9BAA2B68E64800613895 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				066ABA242B62AD5700DB54C6 /* SelectedCategoriesVC.swift */,
+				06CD9BAC2B68E6CE00613895 /* ApiManager.swift */,
 			);
-			path = VC;
+			name = Networking;
 			sourceTree = "<group>";
 		};
-		06CD9BA02B68330E00613895 /* ViewModel */ = {
+		06CD9BBD2B6BB7EE00613895 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				06CD9BA42B68351300613895 /* ListMealsViewModel.swift */,
+				066ABA412B62D65C00DB54C6 /* CategoriesModel.swift */,
 			);
-			path = ViewModel;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		06CD9BC02B6BBE9300613895 /* DetailVC */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DetailVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +160,8 @@
 			name = Diplom;
 			packageProductDependencies = (
 				06CD9B902B65402700613895 /* SnapKit */,
+				06CD9BB72B6BB12900613895 /* SDWebImage */,
+				06CD9BB92B6BB12A00613895 /* SDWebImageMapKit */,
 			);
 			productName = Diplom;
 			productReference = 06AB9BE42B460020000E229C /* Diplom.app */;
@@ -191,6 +192,7 @@
 			mainGroup = 06AB9BDB2B460020000E229C;
 			packageReferences = (
 				06CD9B8F2B65402700613895 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				06CD9BB62B6BB12900613895 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 06AB9BE52B460020000E229C /* Products */;
 			projectDirPath = "";
@@ -221,7 +223,8 @@
 			files = (
 				06CD9B802B64E76300613895 /* ListIconCell.swift in Sources */,
 				066ABA342B62B5C100DB54C6 /* SelectCategoriesCell.swift in Sources */,
-				066ABA252B62AD5700DB54C6 /* SelectedCategoriesVC.swift in Sources */,
+				06CD9BAD2B68E6CE00613895 /* ApiManager.swift in Sources */,
+				066ABA252B62AD5700DB54C6 /* ListMealsVC.swift in Sources */,
 				06AB9BE82B460020000E229C /* AppDelegate.swift in Sources */,
 				066ABA3B2B62D3CC00DB54C6 /* SelectedCategoriesVModel.swift in Sources */,
 				06CD9BA52B68351300613895 /* ListMealsViewModel.swift in Sources */,
@@ -437,6 +440,14 @@
 				minimumVersion = 5.6.0;
 			};
 		};
+		06CD9BB62B6BB12900613895 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.9.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -444,6 +455,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 06CD9B8F2B65402700613895 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		06CD9BB72B6BB12900613895 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06CD9BB62B6BB12900613895 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		06CD9BB92B6BB12A00613895 /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 06CD9BB62B6BB12900613895 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

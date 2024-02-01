@@ -22,7 +22,7 @@ private let categoriesIdArray = ["Beef",
                        "Vegan",
                        "Vegetarian"]
     
-    private let titleArray = ["Beef",
+private let titleArray = ["Beef",
                            "Breakfast",
                            "Chicken",
                            "Dessert",
@@ -47,6 +47,7 @@ private let categoriesIdArray = ["Beef",
             model.imageName = categoriesIdArray[i]
             
             categoriesArray.append(model)
+            print("categoriesArray \(categoriesArray)")
         }
     }
     

@@ -26,7 +26,7 @@ class ListMealsVC: UICollectionViewController {
     func configureCollectionView() {
         let flowLayout = UICollectionViewFlowLayout()
         
-        let cellWidth = collectionView.bounds.width  - pad
+        let cellWidth = collectionView.bounds.width - pad
         cellHeight = collectionView.bounds.width - pad
         flowLayout.itemSize = CGSize(width: cellWidth, height: cellWidth)
         collectionView.collectionViewLayout = flowLayout
@@ -38,7 +38,6 @@ class ListMealsVC: UICollectionViewController {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-        
     }
     
     // MARK: UICollectionViewDataSource
@@ -47,7 +46,6 @@ class ListMealsVC: UICollectionViewController {
         
         return listMealsViewModel.getCount()
     }
-    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -66,10 +64,26 @@ class ListMealsVC: UICollectionViewController {
 //        cell.clipsToBounds = false
         cell.configureUI()
         let row = indexPath.row
-        cell.setWithWebImage(model: listMealsViewModel.getMeal(index: row))
+        let meal = listMealsViewModel.getMeal(index: row)
+        cell.setWithWebImage(model: meal)
         
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailVC") as? DetailVC else { return }
+
+        let number = indexPath.row
+        let meal = listMealsViewModel.getMeal(index: number)
+        let meal2 = listMealsViewModel.mealsList[number]
+        let id = meal.categoryId
+        detailVC.mealId = id
+        
+        navigationController?.pushViewController(detailVC, animated: true)
+        
+    }
+    
+    
 }
 
 extension ListMealsVC: UICollectionViewDelegateFlowLayout {

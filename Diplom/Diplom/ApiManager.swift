@@ -8,49 +8,76 @@
 import Foundation
 import UIKit
 
-struct MealAPIModel: Decodable {
+struct MealListAPIModel: Decodable {
     let idMeal: String
     let strMeal: String
     let strMealThumb: String
+    
+    func toCategoryModel() -> CategoriesModel {
+        let categoriesModel = CategoriesModel()
+        categoriesModel.categoryId = idMeal
+        categoriesModel.imageName = strMealThumb
+        categoriesModel.title = strMeal
+        return categoriesModel
+    }
 }
 
-struct MealAPIRoot: Decodable {
-    let meals: [MealAPIModel]
+struct MealListAPIRoot: Decodable {
+    let meals: [MealListAPIModel]
 }
 
 class ApiManager {
-    let strBaseApiFilter = "https://www.themealdb.com/api/json/v1/1/filter.php?c="
+    let baseUrlStr = "https://www.themealdb.com/api/json/v1/1/"
+    let apiFilterStr = "filter.php?c="
+    let apiDetailStr = "lookup.php?i="
     
-    func getListOfMeal(category: String, complition: @escaping(_ data: [MealAPIModel],_ error: String)->()) {
+    func getListOfMeal(category: String, completion: @escaping(_ data: [MealListAPIModel],_ error: String)->()) {
         
-        guard let url = URL(string: strBaseApiFilter + category) else { return }
+        guard let url = URL(string: baseUrlStr + apiFilterStr + category) else { return }
         var request = URLRequest(url: url)
         request.setValue( "application/json", forHTTPHeaderField: "Content-Type")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                 //print("Данные::: \(data)")
-                if let meals = try? JSONDecoder().decode(MealAPIRoot.self, from: data) {
-                    //print("БЛЮДА::: \(meals)")
-                    complition(meals.meals, "")
+                if let meals = try? JSONDecoder().decode(MealListAPIRoot.self, from: data) {
+                    print("БЛЮДА::: \(meals)")
+                    completion(meals.meals, "")
                 } else {
-                    //print("Invalid Response")
-                    complition([], "Invalid Response")
+                    completion([], "Invalid Response")
                 }
             } else if let error = error {
-                //print("HTTP Request Failed \(error)")
-                complition([], "HTTP Request Failed \(error)")
+                completion([], "HTTP Request Failed \(error)")
+            }
+        }
+        task.resume()
+    }
+    
+    func getDetailOfMeal(mealId: String, completion: @escaping(_ dataArray: [MealDetail],_ error: String)->()) {
+        
+        guard let url = URL(string: baseUrlStr + apiDetailStr + mealId) else { return }
+        
+        var request = URLRequest(url: url)
+      //  request.setValue( "application/json", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                //print("Данные::: \(data)")
+                if let meals = try? JSONDecoder().decode(RootMealDetailAPI.self, from: data) {
+                    print("БЛЮДА::: \(meals)")
+                    completion(meals.meals, "")
+                } else {
+                    completion([], "Invalid Response")
+                }
+            } else if let error = error {
+                completion([], "HTTP Request Failed \(error)")
             }
         }
         task.resume()
     }
 }
 
-extension String {
-    func toUIImage() {
-        
-    }
-}
+
     
     
 

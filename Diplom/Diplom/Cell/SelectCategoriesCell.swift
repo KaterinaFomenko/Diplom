@@ -27,13 +27,9 @@ class SelectCategoriesCell: UICollectionViewCell {
         configureUI()
     }
     
-    
-        
     override func layoutSubviews() {
             //  super.layoutSubviews()
-            
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 8).cgPath
-            
     }
 
     func set(model: CategoriesModel) {
@@ -45,7 +41,6 @@ class SelectCategoriesCell: UICollectionViewCell {
     func setWithWebImage(model: CategoriesModel) {
         titleLabel.text = model.title
         imageView.sd_setImage(with: URL(string: model.imageName), placeholderImage: UIImage(named: "Placeholder"))
-
         labelBGView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
     }
     

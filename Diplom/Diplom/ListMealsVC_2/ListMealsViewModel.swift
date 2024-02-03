@@ -9,23 +9,18 @@ import Foundation
 
 class ListMealsViewModel {
     
-    var mealsList: [CategoriesModel] = []
     var listMealsVC: ListMealsVC?
+    var mealsList: [CategoriesModel] = []
     
     func loadData(categoryId: String) {
-        ApiManager().getListOfMeal(category: categoryId, complition: { (data, error) -> () in
+        ApiManager().getListOfMeal(category: categoryId, completion: { (data, error) -> () in
           
             self.mealsList.removeAll()
             for item in data {
-                let category  = CategoriesModel()
-                category.categoryId = item.idMeal
-                category.title = item.strMeal
-                category.imageName = item.strMealThumb
-                self.mealsList.append(category)
+                self.mealsList.append(item.toCategoryModel())
             }
             self.listMealsVC?.updateData()
         })
-        
     }
     
     func getMeal(index: Int) -> CategoriesModel {
@@ -35,5 +30,4 @@ class ListMealsViewModel {
     func getCount() -> Int {
         return mealsList.count
     }
-    
 }

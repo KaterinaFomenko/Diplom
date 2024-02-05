@@ -7,13 +7,12 @@
 
 import UIKit
 
-
 class ListMealsVC: UICollectionViewController {
     let listMealsViewModel = ListMealsViewModel()
     var cellHeight: CGFloat = 128
     let pad: CGFloat = 40
     var selectedCategory = ""
-   // let itemsPerRow: CGFloat = 2
+    // let itemsPerRow: CGFloat = 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,53 +40,39 @@ class ListMealsVC: UICollectionViewController {
     }
     
     // MARK: UICollectionViewDataSource
-    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
-        return listMealsViewModel.getCount()
+        return 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return listMealsViewModel.getCount()
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectCategoriesCell", for: indexPath) as? SelectCategoriesCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell (withReuseIdentifier: "selectCategoriesCell", for: indexPath) as? SelectCategoriesCell else { return UICollectionViewCell() }
         
-//        cell.backgroundColor = .white
-//        cell.layer.cornerRadius = 8
-//        cell.layer.shadowColor = UIColor.black.cgColor
-//        cell.layer.shadowOffset = CGSize(width: 0, height: 4)
-//        cell.layer.shadowOpacity = 0.4
-//        cell.layer.shadowRadius = 8 
-//        cell.clipsToBounds = false
         cell.configureUI()
         let row = indexPath.row
         let meal = listMealsViewModel.getMeal(index: row)
         cell.setWithWebImage(model: meal)
-        
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailVC") as? DetailVC else { return }
-
-        let number = indexPath.row
-        let meal = listMealsViewModel.getMeal(index: number)
-        let meal2 = listMealsViewModel.mealsList[number]
-        let id = meal.categoryId
-        detailVC.mealId = id
+        
+                let number = indexPath.row
+                let meal = listMealsViewModel.getMeal(index: number)
+                let meal2 = listMealsViewModel.mealsArray[number]
+                let id = meal.categoryId
+                detailVC.mealId = id
         
         navigationController?.pushViewController(detailVC, animated: true)
-        
     }
-    
-    
 }
 
 extension ListMealsVC: UICollectionViewDelegateFlowLayout {
- 
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
@@ -101,4 +86,10 @@ extension ListMealsVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
-
+//        cell.backgroundColor = .white
+//        cell.layer.cornerRadius = 8
+//        cell.layer.shadowColor = UIColor.black.cgColor
+//        cell.layer.shadowOffset = CGSize(width: 0, height: 4)
+//        cell.layer.shadowOpacity = 0.4
+//        cell.layer.shadowRadius = 8
+//        cell.clipsToBounds = false

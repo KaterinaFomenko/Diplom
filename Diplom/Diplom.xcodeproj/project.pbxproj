@@ -27,6 +27,8 @@
 		06CD9BC62B6CFDB600613895 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD9BC52B6CFDB600613895 /* DetailModel.swift */; };
 		06F8EE452B6E6C3B003BF050 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F8EE442B6E6C3B003BF050 /* DetailTableViewCell.swift */; };
 		06F8EE482B6EB69A003BF050 /* DetailDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F8EE472B6EB69A003BF050 /* DetailDataManager.swift */; };
+		06F8EE4D2B6EE68D003BF050 /* MealListAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F8EE4C2B6EE68D003BF050 /* MealListAPIModel.swift */; };
+		06F8EE502B70142E003BF050 /* IngredientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F8EE4F2B70142E003BF050 /* IngredientModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		06CD9BC52B6CFDB600613895 /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		06F8EE442B6E6C3B003BF050 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		06F8EE472B6EB69A003BF050 /* DetailDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDataManager.swift; sourceTree = "<group>"; };
+		06F8EE4C2B6EE68D003BF050 /* MealListAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealListAPIModel.swift; sourceTree = "<group>"; };
+		06F8EE4F2B70142E003BF050 /* IngredientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,8 @@
 			children = (
 				066ABA412B62D65C00DB54C6 /* CategoriesModel.swift */,
 				06CD9BC52B6CFDB600613895 /* DetailModel.swift */,
+				06F8EE4C2B6EE68D003BF050 /* MealListAPIModel.swift */,
+				06F8EE4F2B70142E003BF050 /* IngredientModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -243,8 +249,10 @@
 				066ABA252B62AD5700DB54C6 /* ListMealsVC.swift in Sources */,
 				06AB9BE82B460020000E229C /* AppDelegate.swift in Sources */,
 				066ABA3B2B62D3CC00DB54C6 /* SelectedCategoriesVModel.swift in Sources */,
+				06F8EE502B70142E003BF050 /* IngredientModel.swift in Sources */,
 				06CD9BA52B68351300613895 /* ListMealsViewModel.swift in Sources */,
 				066ABA422B62D65C00DB54C6 /* CategoriesModel.swift in Sources */,
+				06F8EE4D2B6EE68D003BF050 /* MealListAPIModel.swift in Sources */,
 				06AB9BEA2B460020000E229C /* SceneDelegate.swift in Sources */,
 				06CD9B882B64F2E400613895 /* ListIconCategoryVC.swift in Sources */,
 			);

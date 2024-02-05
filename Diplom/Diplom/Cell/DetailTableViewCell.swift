@@ -11,68 +11,99 @@ import UIKit
 class DetailTableViewCell: UITableViewCell {
     
     // MARK: - Properties
-    private var padView = 10
-    private var heightCell = 20
     
-    private lazy var stackView: UIStackView = {
-        let view = UIStackView()
-        view.axis = .horizontal
-        view.alignment = .center
-        view.distribution = .fillEqually
-        view.spacing = 20
+    private lazy var circleImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "circle.fill")
+        imageView.contentMode = .scaleAspectFill
         
-        return view
+       // imageView.layer.cornerRadius = 12.0
+       // imageView.layer.masksToBounds = false
+        
+        return imageView
     }()
     
-    private lazy var cellImage: UIImageView = {
-        let cellImage = UIImageView()
-        cellImage.image = UIImage(systemName: "circle.fill")
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Milk"
+        label.textAlignment = .left
+        label.textColor = .lightGray
+        label.font = .systemFont(ofSize: 17)
+        label.numberOfLines = 1
         
-        return cellImage
+        return label
     }()
     
-    private lazy var cellName: UILabel = {
-        let cellName = UILabel()
+    private lazy var amountLabel: UILabel = {
+        let label = UILabel()
+        label.text = "500 ml"
+        label.textAlignment = .right
+        label.textColor = .black
+        label.font = .systemFont(ofSize: 18, weight: .semibold)
+            //.boldSystemFont(ofSize: 18)
+        label.numberOfLines = 1
         
-        return cellName
+        return label
     }()
-    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         setupUI()
     }
     
-    required init?(coder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupUI() {
-        addSubview(stackView)
-        stackView.addSubview(cellImage)
-        stackView.addSubview(cellName)
+    func setupUI() {
+        addSubview(circleImageView)
+        addSubview(titleLabel)
+        addSubview(amountLabel)
         
         setupConstraints()
     }
     
+    
     private func setupConstraints() {
-        stackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
         
-        cellImage.snp.makeConstraints { make in
-            make.height.equalTo(heightCell)
+        circleImageView.snp.makeConstraints { make in
+            
+            make.height.equalTo(15)
+            make.width.equalTo(15)
             make.centerY.equalToSuperview()
-            make.leading.equalTo(padView)
+            make.leading.equalToSuperview().inset(10)
         }
         
-        cellName.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
+            //make.edges.size.equalTo(grayRec).inset(5)
+            // make.leading.equalTo(imageViewLogo.snp.trailing)
+            //make.trailing.equalToSuperview().inset(10)
+            make.leading.equalTo(circleImageView.snp.trailing).offset(20)
             make.centerY.equalToSuperview()
-            make.trailing.equalTo(cellImage.snp.leading).inset(padView)
-            make.leading.equalTo(padView)
         }
         
+        amountLabel.snp.makeConstraints { make in
+            //make.edges.size.equalTo(grayRec).inset(5)
+            // make.leading.equalTo(imageViewLogo.snp.trailing)
+            make.trailing.equalToSuperview().inset(10)
+            make.leading.equalTo(titleLabel.snp.trailing).offset(20)
+            make.centerY.equalToSuperview()
+            
+        }
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    func setData(ingredient: IngredientModel) {
+      
+        titleLabel.text = ingredient.titleName
+        amountLabel.text = ingredient.amount
     }
     
 }

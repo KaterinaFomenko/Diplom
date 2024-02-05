@@ -8,10 +8,10 @@
 import Foundation
 
     struct RootMealDetailAPI: Decodable {
-        let meals: [MealDetail]
+        let meals: [MealDetailAPIModel]
     }
 
-    struct MealDetail: Decodable {
+    struct MealDetailAPIModel: Decodable {
         let idMeal: String
         let strMeal: String
         let strDrinkAlternate: String?

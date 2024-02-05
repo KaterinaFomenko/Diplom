@@ -8,19 +8,7 @@
 import Foundation
 import UIKit
 
-struct MealListAPIModel: Decodable {
-    let idMeal: String
-    let strMeal: String
-    let strMealThumb: String
-    
-    func toCategoryModel() -> CategoriesModel {
-        let categoriesModel = CategoriesModel()
-        categoriesModel.categoryId = idMeal
-        categoriesModel.imageName = strMealThumb
-        categoriesModel.title = strMeal
-        return categoriesModel
-    }
-}
+
 
 struct MealListAPIRoot: Decodable {
     let meals: [MealListAPIModel]
@@ -53,7 +41,7 @@ class ApiManager {
         task.resume()
     }
     
-    func getDetailOfMeal(mealId: String, completion: @escaping(_ dataArray: [MealDetail],_ error: String)->()) {
+    func getDetailOfMeal(mealId: String, completion: @escaping(_ dataArray: [MealDetailAPIModel],_ error: String)->()) {
         
         guard let url = URL(string: baseUrlStr + apiDetailStr + mealId) else { return }
         

@@ -18,9 +18,6 @@ class ListIconCategoryVC: UIViewController {
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = true
         registerCell()
-        
-       
-        
     }
     
     func registerCell() {

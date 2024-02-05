@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
-
+import SDWebImage
 
 class DetailVC: UIViewController {
     
@@ -16,116 +16,42 @@ class DetailVC: UIViewController {
     var detailDataManager = DetailDataManager()
     
     // MARK: - Properties
-    private var padView = 10
     
-    private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        
-        return scrollView
-    }()
     
-    private lazy var viewImageButton: UIView = {
-        let viewImageButton = UIView()
-        
-        return viewImageButton
-    }()
+    @IBOutlet weak var mealImageView: UIImageView!
+    @IBOutlet weak var youTubeButton: UIButton!
+    @IBOutlet weak var mealTitleLabel: UILabel!
+    @IBOutlet weak var areaLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
+   
+    @IBOutlet weak var ingredientsTitleLabel: UILabel!
+    @IBOutlet weak var tableViewIngredients: UITableView!
     
-    private lazy var imageMain: UIImageView = {
-        var imageMain = UIImageView()
-        
-        return imageMain
-    }()
+    @IBOutlet weak var groupTableView: UIView!
     
-    private lazy var button: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "youtube"), for: .normal)
-        
-        return button
-    }()
+    @IBOutlet weak var groupDescriptionView: UIView!
     
-    private lazy var viewForTitles: UIView = {
-        let viewForTitles = UIView()
-        
-        return viewForTitles
-    }()
+    @IBOutlet weak var descriptionTextView: UITextView!
     
-    private lazy var titleMeal: UILabel = {
-        let titleMeal = UILabel()
-        textMeal.font = .boldSystemFont(ofSize: 20)
+    @IBOutlet weak var heightGroupTableView: NSLayoutConstraint!
     
-        return titleMeal
-    }()
+    @IBOutlet weak var heightGroupDescriptionView: NSLayoutConstraint!
     
-    private lazy var stackView: UIStackView = {
-        let view = UIStackView()
-        view.axis = .horizontal
-        view.alignment = .center
-        view.distribution = .fillEqually
-        view.spacing = 20
-        
-        return view
-    }()
+    @IBOutlet weak var heightIngredientsTitleLabel: NSLayoutConstraint!
     
-    private lazy var titleArea: UILabel = {
-        let titleArea = UILabel()
-        textMeal.font = .systemFont(ofSize: 16)
-        textMeal.textColor = .systemGray
-        
-        return titleArea
-    }()
-    
-    private lazy var titleCategory: UILabel = {
-        let titleCategory = UILabel()
-        textMeal.font = .systemFont(ofSize: 16)
-        textMeal.textColor = .systemGray
-        
-        return titleCategory
-    }()
-    
-    private lazy var titleIngredients: UILabel = {
-        let titleIngredients = UILabel()
-        titleIngredients.font = .systemFont(ofSize: 18)
-        
-        return titleIngredients
-    }()
-    
-    private lazy var tableIngredients: UITableView = {
-        let tableIngredients = UITableView()
-        
-        return tableIngredients
-    }()
-    
-//    private lazy var tableCell: UITableViewCell = {
-//        let cell = UITableViewCell()
-//
-//        return cell
-//    }()
-    
-//    private lazy var cellImage: UIImageView = {
-//        let cellImage = UIImageView()
-//        cellImage.image = UIImage(systemName: "circle.fill")
-//
-//        return cellImage
-//    }()
-//
-//    private lazy var cellName: UILabel = {
-//        let cellName = UILabel()
-//
-//        return cellName
-//    }()
-    
-    private lazy var textMeal: UITextView = {
-        let textMeal = UITextView()
-        
-        return textMeal
-    }()
-    
+    @IBAction func youTubeActionButton(_ sender: Any) {
+        openYouTubeLink(linkStr: detailDataManager.mealDetail?.strYoutube ?? "")
+        print("Youtube")
+    }
     // MARK: - Life circle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //setupUI()
         registerCell()
+        tableViewIngredients.delegate = self
+        tableViewIngredients.dataSource = self
+        
         detailDataManager.detailVC = self
         detailDataManager.detailLoadData(idMeal: mealId)
         
@@ -133,77 +59,69 @@ class DetailVC: UIViewController {
     
     func update() {
         print("update Detail")
-        
+        DispatchQueue.main.async {
+            self.tableViewIngredients.reloadData()
+            
+            let imageURLStr = self.detailDataManager.mealDetail?.strMealThumb ?? ""
+            self.mealImageView.sd_setImage(with: URL(string: imageURLStr), placeholderImage: UIImage(named: "Placeholder"))
+            
+            self.mealTitleLabel.text = self.detailDataManager.mealDetail?.strMeal
+            
+            self.areaLabel.text = self.detailDataManager.mealDetail?.strArea
+            
+            self.categoryLabel.text = self.detailDataManager.mealDetail?.strCategory
+            
+            self.descriptionTextView.text = self.detailDataManager.mealDetail?.strInstructions
+            
+            self.updateTableHeight()
+            self.updateDescriptionHeight()
+            
+        }
         print(detailDataManager.mealDetail?.strMeal)
         
     }
     
    // MARK: - Private methods
     private func setupUI() {
-        view.addSubview(scrollView)
-        scrollView.addSubview(viewImageButton)
-        scrollView.addSubview(viewForTitles)
-        scrollView.addSubview(titleIngredients)
-        scrollView.addSubview(tableIngredients)
-        scrollView.addSubview(textMeal)
-        
-        viewImageButton.addSubview(imageMain)
-        viewImageButton.addSubview(button)
-        
-        viewForTitles.addSubview(titleMeal)
-        
-        viewForTitles.addSubview(stackView)
-        stackView.addSubview(titleArea)
-        stackView.addSubview(titleCategory)
         
         //setupConstraints()
     }
     
-    private func setupConstraints() {
-        scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+    func openYouTubeLink(linkStr: String) {
+           // Замените "YOUR_VIDEO_ID" на идентификатор видео, которое вы хотите открыть
+           //let videoId = "YOUR_VIDEO_ID"
+           
+           // Создаем URL-адрес для открытия видео на YouTube
+           if let url = URL(string: linkStr) {
+               // Открываем URL-адрес в приложении по умолчанию
+               UIApplication.shared.open(url, options: [:], completionHandler: nil)
+           }
+       }
+    func updateTableHeight() {
+        let tableHeight = 44 * detailDataManager.ingredients.count + Int(heightIngredientsTitleLabel.constant) + 10
+        heightGroupTableView.constant = CGFloat(tableHeight)
+    }
+    
+    func updateDescriptionHeight() {
+        descriptionTextView.text = detailDataManager.mealDetail?.strInstructions
+        descriptionTextView.font = UIFont.systemFont(ofSize: 16)
         
-        viewImageButton.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.trailing.leading.equalTo(padView)
-        }
+        let sizeThatFits = descriptionTextView.sizeThatFits(CGSize(width: descriptionTextView.frame.width, height: CGFloat.greatestFiniteMagnitude))
         
-        imageMain.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-        }
-        
-        viewForTitles.snp.makeConstraints { make in
-            make.top.equalTo(viewImageButton.snp.bottom).inset(padView)
-            make.trailing.leading.equalTo(padView)
-        }
-        
-        titleIngredients.snp.makeConstraints { make in
-            make.top.equalTo(viewForTitles.snp.bottom).inset(padView)
-            make.trailing.leading.equalTo(padView)
-        }
-        
-        tableIngredients.snp.makeConstraints { make in
-            make.top.equalTo(titleIngredients.snp.bottom).inset(padView)
-            make.trailing.leading.equalTo(padView)
-            
-        }
-        
-        textMeal.snp.makeConstraints { make in
-            make.top.equalTo(tableIngredients.snp.bottom).inset(padView)
-            make.trailing.leading.equalTo(padView)
-            make.bottom.equalTo(scrollView).inset(padView)
-        }
+        descriptionTextView.frame.size.height = sizeThatFits.height
+        heightGroupDescriptionView.constant = descriptionTextView.frame.size.height
     }
     
     func registerCell() {
-        tableIngredients.register(DetailTableViewCell.self, forCellReuseIdentifier: "detailTableViewCell")
+        tableViewIngredients.register(DetailTableViewCell.self, forCellReuseIdentifier: "detailTableViewCell")
+     //   tableViewIngredients.register(ListIconCell.self, forCellReuseIdentifier: "detailTableViewCell")
+        
     }
+    
 }
     extension DetailVC: UITableViewDelegate, UITableViewDataSource {
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return 5
-            //return categoriesViewModel.getCount()
+            return detailDataManager.ingredients.count
         }
         
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -213,11 +131,10 @@ class DetailVC: UIViewController {
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "detailTableViewCell", for: indexPath) as? DetailTableViewCell else { return UITableViewCell() }
             
-      //      var cellData = categoriesViewModel.getCategory(index: indexPath.row)
-      //      cellData.imageName = "icon-" +  cellData.categoryId.lowercased()
-      //      print(cellData.imageName)
-       //     cell.setCell(category: cellData)
-            
+            let row = indexPath.row
+            let ingredient = detailDataManager.ingredients[row]
+            cell.setData(ingredient: ingredient)
+         
             return cell
         }
     }

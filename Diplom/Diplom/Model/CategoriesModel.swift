@@ -11,5 +11,8 @@ class CategoriesModel {
     var categoryId: String = ""
     var title: String = ""
     var imageName: String = ""
-  //  var isFavourite: Bool 
-}
+  }
+
+
+
+//  var isFavourite: Bool

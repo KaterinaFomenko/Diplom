@@ -16,14 +16,13 @@ class DetailTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "circle.fill")
         imageView.contentMode = .scaleAspectFill
-        
-       // imageView.layer.cornerRadius = 12.0
-       // imageView.layer.masksToBounds = false
+        //imageView.layer.cornerRadius = 12.0
+        //imageView.layer.masksToBounds = true
         
         return imageView
     }()
     
-    private lazy var titleLabel: UILabel = {
+     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Milk"
         label.textAlignment = .left
@@ -34,13 +33,12 @@ class DetailTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var amountLabel: UILabel = {
+     private lazy var amountLabel: UILabel = {
         let label = UILabel()
         label.text = "500 ml"
         label.textAlignment = .right
         label.textColor = .black
         label.font = .systemFont(ofSize: 18, weight: .semibold)
-            //.boldSystemFont(ofSize: 18)
         label.numberOfLines = 1
         
         return label
@@ -63,47 +61,28 @@ class DetailTableViewCell: UITableViewCell {
         setupConstraints()
     }
     
-    
     private func setupConstraints() {
-        
         circleImageView.snp.makeConstraints { make in
-            
-            make.height.equalTo(15)
-            make.width.equalTo(15)
+            make.height.equalTo(10)
+            make.width.equalTo(10)
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().inset(10)
         }
         
         titleLabel.snp.makeConstraints { make in
-            //make.edges.size.equalTo(grayRec).inset(5)
-            // make.leading.equalTo(imageViewLogo.snp.trailing)
-            //make.trailing.equalToSuperview().inset(10)
             make.leading.equalTo(circleImageView.snp.trailing).offset(20)
             make.centerY.equalToSuperview()
         }
         
         amountLabel.snp.makeConstraints { make in
-            //make.edges.size.equalTo(grayRec).inset(5)
-            // make.leading.equalTo(imageViewLogo.snp.trailing)
             make.trailing.equalToSuperview().inset(10)
             make.leading.equalTo(titleLabel.snp.trailing).offset(20)
             make.centerY.equalToSuperview()
-            
         }
-        
-        
     }
     
-    
-    
-    
-    
-    
-    
     func setData(ingredient: IngredientModel) {
-      
         titleLabel.text = ingredient.titleName
         amountLabel.text = ingredient.amount
     }
-    
 }

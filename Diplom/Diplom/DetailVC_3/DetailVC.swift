@@ -17,7 +17,6 @@ class DetailVC: UIViewController {
     
     // MARK: - Properties
     
-    
     @IBOutlet weak var mealImageView: UIImageView!
     @IBOutlet weak var youTubeButton: UIButton!
     @IBOutlet weak var mealTitleLabel: UILabel!
@@ -26,35 +25,30 @@ class DetailVC: UIViewController {
    
     @IBOutlet weak var ingredientsTitleLabel: UILabel!
     @IBOutlet weak var tableViewIngredients: UITableView!
-    
-    @IBOutlet weak var groupTableView: UIView!
-    
-    @IBOutlet weak var groupDescriptionView: UIView!
-    
     @IBOutlet weak var descriptionTextView: UITextView!
     
+    @IBOutlet weak var groupTableView: UIView!
+    @IBOutlet weak var groupDescriptionView: UIView!
+    
     @IBOutlet weak var heightGroupTableView: NSLayoutConstraint!
-    
     @IBOutlet weak var heightGroupDescriptionView: NSLayoutConstraint!
-    
     @IBOutlet weak var heightIngredientsTitleLabel: NSLayoutConstraint!
     
     @IBAction func youTubeActionButton(_ sender: Any) {
         openYouTubeLink(linkStr: detailDataManager.mealDetail?.strYoutube ?? "")
-        print("Youtube")
     }
+    
     // MARK: - Life circle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //setupUI()
         registerCell()
+        configureImageView()
         tableViewIngredients.delegate = self
         tableViewIngredients.dataSource = self
         
         detailDataManager.detailVC = self
         detailDataManager.detailLoadData(idMeal: mealId)
-        
     }
     
     func update() {
@@ -78,25 +72,29 @@ class DetailVC: UIViewController {
             
         }
         print(detailDataManager.mealDetail?.strMeal)
-        
     }
     
    // MARK: - Private methods
-    private func setupUI() {
+
+    func configureImageView() {
+      //  self.backgroundColor = .white
+     //   let groupView: UIView = self.contentView ?? UIView()
+        mealImageView.frame.size = CGSize(width: 200, height: 100) //????
+        mealImageView.layer.cornerRadius = 8
+        mealImageView.layer.masksToBounds = true
         
-        //setupConstraints()
+        mealImageView.layer.shadowColor = UIColor.black.cgColor
+        mealImageView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        mealImageView.layer.shadowOpacity = 0.4
+        mealImageView.layer.shadowRadius = 8
     }
     
     func openYouTubeLink(linkStr: String) {
-           // Замените "YOUR_VIDEO_ID" на идентификатор видео, которое вы хотите открыть
-           //let videoId = "YOUR_VIDEO_ID"
-           
-           // Создаем URL-адрес для открытия видео на YouTube
-           if let url = URL(string: linkStr) {
-               // Открываем URL-адрес в приложении по умолчанию
-               UIApplication.shared.open(url, options: [:], completionHandler: nil)
-           }
-       }
+        if let url = URL(string: linkStr) {
+             UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
     func updateTableHeight() {
         let tableHeight = 44 * detailDataManager.ingredients.count + Int(heightIngredientsTitleLabel.constant) + 10
         heightGroupTableView.constant = CGFloat(tableHeight)
@@ -114,11 +112,9 @@ class DetailVC: UIViewController {
     
     func registerCell() {
         tableViewIngredients.register(DetailTableViewCell.self, forCellReuseIdentifier: "detailTableViewCell")
-     //   tableViewIngredients.register(ListIconCell.self, forCellReuseIdentifier: "detailTableViewCell")
-        
     }
-    
 }
+
     extension DetailVC: UITableViewDelegate, UITableViewDataSource {
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return detailDataManager.ingredients.count
@@ -134,10 +130,10 @@ class DetailVC: UIViewController {
             let row = indexPath.row
             let ingredient = detailDataManager.ingredients[row]
             cell.setData(ingredient: ingredient)
-         
+            
             return cell
         }
     }
 
-    
+
 

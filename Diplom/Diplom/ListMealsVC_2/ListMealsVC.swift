@@ -16,7 +16,7 @@ class ListMealsVC: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        registerCell()
         configureCollectionView()
         listMealsViewModel.listMealsVC = self
         listMealsViewModel.loadData(categoryId: selectedCategory)
@@ -31,6 +31,10 @@ class ListMealsVC: UICollectionViewController {
         collectionView.collectionViewLayout = flowLayout
         
         collectionView.showsVerticalScrollIndicator = true
+    }
+    
+    func registerCell() {
+        collectionView.register(SelectCategoriesCell.self, forCellWithReuseIdentifier: "selectCategoriesCell")
     }
     
     func updateData() {

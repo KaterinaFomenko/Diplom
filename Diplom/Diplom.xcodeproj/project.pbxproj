@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0665924E2B7359EC00043CB1 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0665924D2B7359EC00043CB1 /* SearchVC.swift */; };
 		066ABA252B62AD5700DB54C6 /* ListMealsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066ABA242B62AD5700DB54C6 /* ListMealsVC.swift */; };
 		066ABA342B62B5C100DB54C6 /* SelectCategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066ABA332B62B5C100DB54C6 /* SelectCategoriesCell.swift */; };
 		066ABA3B2B62D3CC00DB54C6 /* SelectedCategoriesVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066ABA3A2B62D3CC00DB54C6 /* SelectedCategoriesVModel.swift */; };
 		066ABA422B62D65C00DB54C6 /* CategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066ABA412B62D65C00DB54C6 /* CategoriesModel.swift */; };
+		069289A02B74C2170018112B /* SearchDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0692899F2B74C2170018112B /* SearchDataManager.swift */; };
 		06AB9BE82B460020000E229C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AB9BE72B460020000E229C /* AppDelegate.swift */; };
 		06AB9BEA2B460020000E229C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AB9BE92B460020000E229C /* SceneDelegate.swift */; };
 		06AB9BEF2B460020000E229C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06AB9BED2B460020000E229C /* Main.storyboard */; };
@@ -32,10 +34,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0665924D2B7359EC00043CB1 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		066ABA242B62AD5700DB54C6 /* ListMealsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMealsVC.swift; sourceTree = "<group>"; };
 		066ABA332B62B5C100DB54C6 /* SelectCategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoriesCell.swift; sourceTree = "<group>"; };
 		066ABA3A2B62D3CC00DB54C6 /* SelectedCategoriesVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoriesVModel.swift; sourceTree = "<group>"; };
 		066ABA412B62D65C00DB54C6 /* CategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
+		0692899F2B74C2170018112B /* SearchDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataManager.swift; sourceTree = "<group>"; };
 		06AB9BE42B460020000E229C /* Diplom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diplom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06AB9BE72B460020000E229C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06AB9BE92B460020000E229C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +73,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		066592502B7359F300043CB1 /* SearchVC */ = {
+			isa = PBXGroup;
+			children = (
+				0665924D2B7359EC00043CB1 /* SearchVC.swift */,
+				0692899F2B74C2170018112B /* SearchDataManager.swift */,
+			);
+			path = SearchVC;
+			sourceTree = "<group>";
+		};
 		066ABA3D2B62D3D600DB54C6 /* ListIconCategoriesVC_1 */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,8 +120,8 @@
 		06AB9BE62B460020000E229C /* Diplom */ = {
 			isa = PBXGroup;
 			children = (
-				06CD9BAA2B68E64800613895 /* Networking */,
 				06AB9BE72B460020000E229C /* AppDelegate.swift */,
+				06CD9BAA2B68E64800613895 /* Networking */,
 				06AB9BE92B460020000E229C /* SceneDelegate.swift */,
 				06AB9BED2B460020000E229C /* Main.storyboard */,
 				06AB9BF02B460024000E229C /* Assets.xcassets */,
@@ -119,6 +132,7 @@
 				06CD9BC02B6BBE9300613895 /* DetailVC_3 */,
 				06CD9BBD2B6BB7EE00613895 /* Model */,
 				066ABA402B62D5A900DB54C6 /* Cell */,
+				066592502B7359F300043CB1 /* SearchVC */,
 			);
 			path = Diplom;
 			sourceTree = "<group>";
@@ -244,6 +258,7 @@
 				06CD9BC32B6CBEC100613895 /* DetailVC.swift in Sources */,
 				06F8EE452B6E6C3B003BF050 /* DetailTableViewCell.swift in Sources */,
 				06CD9BC62B6CFDB600613895 /* DetailModel.swift in Sources */,
+				069289A02B74C2170018112B /* SearchDataManager.swift in Sources */,
 				06CD9BAD2B68E6CE00613895 /* ApiManager.swift in Sources */,
 				06F8EE482B6EB69A003BF050 /* DetailDataManager.swift in Sources */,
 				066ABA252B62AD5700DB54C6 /* ListMealsVC.swift in Sources */,
@@ -254,6 +269,7 @@
 				066ABA422B62D65C00DB54C6 /* CategoriesModel.swift in Sources */,
 				06F8EE4D2B6EE68D003BF050 /* MealListAPIModel.swift in Sources */,
 				06AB9BEA2B460020000E229C /* SceneDelegate.swift in Sources */,
+				0665924E2B7359EC00043CB1 /* SearchVC.swift in Sources */,
 				06CD9B882B64F2E400613895 /* ListIconCategoryVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

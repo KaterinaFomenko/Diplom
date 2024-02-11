@@ -22,6 +22,22 @@ class DetailDataManager {
         })
     }
     
+    func saveToCoreData(meal: CategoriesModel?) {
+        guard let meal = meal else { return }
+        CoreDataStack.save(meal)
+    }
+    
+    func isInFavoriteList(mealId: String) -> Bool {
+        let result = CoreDataStack.isObjectInCoreData(categoryId: mealId)
+        return result
+    }
+    
+    func deleteFromCoreData(meal: CategoriesModel?) {
+        guard let meal = meal else { return }
+        CoreDataStack.delete(meal)
+    }
+   
+    
     func loadIngredients() {
         
         let i1 = IngredientModel(titleName: mealDetail?.strIngredient1, amount: mealDetail?.strMeasure1 )

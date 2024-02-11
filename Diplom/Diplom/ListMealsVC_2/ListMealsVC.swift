@@ -67,9 +67,7 @@ class ListMealsVC: UICollectionViewController {
         
                 let number = indexPath.row
                 let meal = listMealsViewModel.getMeal(index: number)
-                let meal2 = listMealsViewModel.mealsArray[number]
-                let id = meal.categoryId
-                detailVC.mealId = id
+                detailVC.currentMealModel = meal
         
         navigationController?.pushViewController(detailVC, animated: true)
     }

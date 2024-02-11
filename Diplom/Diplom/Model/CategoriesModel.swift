@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CategoriesModel {
+struct CategoriesModel {
     var categoryId: String = ""
     var title: String = ""
     var imageName: String = ""

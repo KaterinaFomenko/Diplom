@@ -41,7 +41,7 @@ private let titleArray = ["Beef",
     
     init() {
         for (i, _) in categoriesIdArray.enumerated() {
-            let model = CategoriesModel()
+            var model = CategoriesModel()
             model.categoryId = categoriesIdArray[i]
             model.title = titleArray[i]
             model.imageName = categoriesIdArray[i]

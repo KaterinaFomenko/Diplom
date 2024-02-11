@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class DetailTableViewCell: UITableViewCell {
-    
+    let leftRight = 15
     // MARK: - Properties
     
     private lazy var circleImageView: UIImageView = {
@@ -66,17 +66,17 @@ class DetailTableViewCell: UITableViewCell {
             make.height.equalTo(10)
             make.width.equalTo(10)
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().inset(10)
+            make.leading.equalToSuperview().inset(leftRight)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.leading.equalTo(circleImageView.snp.trailing).offset(20)
+            make.leading.equalTo(circleImageView.snp.trailing).offset(leftRight)
             make.centerY.equalToSuperview()
         }
         
         amountLabel.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(10)
-            make.leading.equalTo(titleLabel.snp.trailing).offset(20)
+            make.trailing.equalToSuperview().inset(leftRight)
+            make.leading.equalTo(titleLabel.snp.trailing).offset(leftRight)
             make.centerY.equalToSuperview()
         }
     }

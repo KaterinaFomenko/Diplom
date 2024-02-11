@@ -11,7 +11,7 @@ struct MealListAPIModel: Decodable {
     let strMealThumb: String
     
     func toCategoryModel() -> CategoriesModel {
-        let categoriesModel = CategoriesModel()
+        var categoriesModel = CategoriesModel()
         categoriesModel.categoryId = idMeal
         categoriesModel.imageName = strMealThumb
         categoriesModel.title = strMeal

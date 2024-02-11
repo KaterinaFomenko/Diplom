@@ -6,14 +6,14 @@
 //
 
 import Foundation
+
 class SearchDataManager {
-    
     weak var searchlVC: SearchVC?
     var mealsArray: [CategoriesModel] = []
     
     func loadData(categoryId: String) {
         ApiManager().getSearchOfMeal(category: categoryId, completion: { [self] (data, error) -> () in
-            // удалить старое
+            mealsArray.removeAll()
             for item in data {
                 self.mealsArray.append(item.toCategoryModel())
             }

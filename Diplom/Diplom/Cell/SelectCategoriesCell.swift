@@ -10,11 +10,6 @@ import SDWebImage
 
 class SelectCategoriesCell: UICollectionViewCell {
     
-  //  @IBOutlet weak var groupView: UIView!
-    //@IBOutlet weak var titleLabel: UILabel!
- //   @IBOutlet weak var labelBGView: UIView!
-    //@IBOutlet weak var imageView: UIImageView!
-    
     private lazy var groupView: UIView = {
         var groupView = UIView()
         
@@ -26,8 +21,8 @@ class SelectCategoriesCell: UICollectionViewCell {
         imageView.image = UIImage(named: "Image")
         imageView.contentMode = .scaleAspectFill
         
-       // imageView.layer.cornerRadius = 12.0
-       // imageView.layer.masksToBounds = false
+        imageView.layer.cornerRadius = 12.0
+        imageView.layer.masksToBounds = false
         
         return imageView
     }()
@@ -88,9 +83,13 @@ class SelectCategoriesCell: UICollectionViewCell {
         labelBGView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
     }
     
+    func getArrayFavoriteRecipes() {
+        
+    }
+    
     func configureUI() {
         self.backgroundColor = .white
-        let groupView: UIView = self.contentView ?? UIView()
+        let groupView: UIView = self.contentView
         groupView.layer.cornerRadius = 8
         groupView.layer.masksToBounds = true
         

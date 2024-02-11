@@ -11,13 +11,15 @@ import SnapKit
 import SDWebImage
 
 class DetailVC: UIViewController {
+    var currentMealModel: CategoriesModel?
     
-    var mealId = ""
     var detailDataManager = DetailDataManager()
-    
+    var isInFavoriteList = false
     // MARK: - Properties
     
     @IBOutlet weak var mealImageView: UIImageView!
+    
+    @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var youTubeButton: UIButton!
     @IBOutlet weak var mealTitleLabel: UILabel!
     @IBOutlet weak var areaLabel: UILabel!
@@ -34,6 +36,11 @@ class DetailVC: UIViewController {
     @IBOutlet weak var heightGroupDescriptionView: NSLayoutConstraint!
     @IBOutlet weak var heightIngredientsTitleLabel: NSLayoutConstraint!
     
+//    @IBAction func favoriteActionButton(_ sender: UIButton) {
+//        sender.setImage(UIImage(named: "favorite_red"), for: .normal)
+//        let saveRecipe = CoreDataStack.save(CategoriesModel())
+//    }
+    
     @IBAction func youTubeActionButton(_ sender: Any) {
         openYouTubeLink(linkStr: detailDataManager.mealDetail?.strYoutube ?? "")
     }
@@ -46,9 +53,11 @@ class DetailVC: UIViewController {
         configureImageView()
         tableViewIngredients.delegate = self
         tableViewIngredients.dataSource = self
+        addFavoriteNavButton()
         
         detailDataManager.detailVC = self
-        detailDataManager.detailLoadData(idMeal: mealId)
+        detailDataManager.detailLoadData(idMeal: currentMealModel?.categoryId ?? "") 
+        checkIsInFavoriteList()
     }
     
     func update() {
@@ -95,6 +104,39 @@ class DetailVC: UIViewController {
         }
     }
     
+    func addFavoriteNavButton() {
+        let image = UIImage(named: "favorite")
+      //  image = image?.withRenderingMode(.alwaysOriginal)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style:.plain, target: self, action: #selector(self.favoriteAction))
+    }
+    
+    func checkIsInFavoriteList() {
+        isInFavoriteList = detailDataManager.isInFavoriteList(mealId: currentMealModel?.categoryId ?? "")
+        if isInFavoriteList {
+            var image = UIImage(named: "favorite_red")
+            //image = image?.withRenderingMode(.alwaysOriginal)
+            self.navigationItem.rightBarButtonItem?.image = image
+        }
+    }
+    
+    @objc func favoriteAction() {
+        if isInFavoriteList {
+            //remove from CoreData
+            detailDataManager.deleteFromCoreData(meal: currentMealModel)
+            isInFavoriteList = false
+            var image = UIImage(named: "favorite")
+            self.navigationItem.rightBarButtonItem?.image = image
+            //image = image?.withRenderingMode(.alwaysOriginal)
+        } else {
+            //add CoreData
+            var image = UIImage(named: "favorite_red")
+            //image = image?.withRenderingMode(.alwaysOriginal)
+            self.navigationItem.rightBarButtonItem?.image = image
+       
+            detailDataManager.saveToCoreData(meal: currentMealModel)
+        }
+    }
+    
     func updateTableHeight() {
         let tableHeight = 44 * detailDataManager.ingredients.count + Int(heightIngredientsTitleLabel.constant) + 10
         heightGroupTableView.constant = CGFloat(tableHeight)
@@ -107,7 +149,12 @@ class DetailVC: UIViewController {
         let sizeThatFits = descriptionTextView.sizeThatFits(CGSize(width: descriptionTextView.frame.width, height: CGFloat.greatestFiniteMagnitude))
         
         descriptionTextView.frame.size.height = sizeThatFits.height
-        heightGroupDescriptionView.constant = descriptionTextView.frame.size.height
+       //Корректировка для отображения одной строки
+        if descriptionTextView.frame.size.height < 40 {
+            heightGroupDescriptionView.constant = 70
+        } else {
+            heightGroupDescriptionView.constant = descriptionTextView.frame.size.height
+        }
     }
     
     func registerCell() {

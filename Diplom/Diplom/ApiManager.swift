@@ -66,7 +66,7 @@ class ApiManager {
     }
     
     func getSearchOfMeal(category: String, completion: @escaping(_ data: [MealListAPIModel],_ error: String)->()) {
-        
+        let str = baseUrlStr + apiSearchStr + category
         guard let url = URL(string: baseUrlStr + apiSearchStr + category) else { return }
         var request = URLRequest(url: url)
       //  request.setValue( "application/json", forHTTPHeaderField: "Content-Type")

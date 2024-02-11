@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 class ListIconCell: UITableViewCell {
-    
+   
     private lazy var imageViewLogo: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Image")
@@ -51,7 +51,6 @@ class ListIconCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -59,9 +58,7 @@ class ListIconCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
-        //  super.layoutSubviews()
         grayRec.layer.shadowPath = UIBezierPath(roundedRect: grayRec.bounds, cornerRadius: 12).cgPath
-        
     }
     
     func setupUI() {

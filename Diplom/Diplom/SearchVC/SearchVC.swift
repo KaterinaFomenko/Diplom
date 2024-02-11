@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class SearchVC: UIViewController, UICollectionViewDataSource {
+class SearchVC: UIViewController, UISearchBarDelegate {
     var mealId = ""
     let searchDataManager = SearchDataManager()
     var cellHeight: CGFloat = 128
@@ -33,6 +33,7 @@ class SearchVC: UIViewController, UICollectionViewDataSource {
         registerCell()
         searchDataManager.searchlVC = self
         searchBar.placeholder = "Test"
+        searchBar.delegate = self
     }
     
     func configureCollectionView() {
@@ -57,8 +58,19 @@ class SearchVC: UIViewController, UICollectionViewDataSource {
             self.collectionViewSearch.reloadData()
         }
     }
-
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+            if let searchText = searchBar.text {
+                searchDataManager.loadData(categoryId: searchText)
+                searchBar.resignFirstResponder()
+            }
+    }
+    
+}
 // MARK: UICollectionViewDataSource
+
+extension SearchVC: UICollectionViewDataSource, UICollectionViewDelegate {
+    
  func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 1
 }
@@ -82,12 +94,15 @@ class SearchVC: UIViewController, UICollectionViewDataSource {
     
             let number = indexPath.row
             let meal = searchDataManager.getMeal(index: number)
-            let meal2 = searchDataManager.mealsArray[number]
-            let id = meal.categoryId
-            detailVC.mealId = id
+            detailVC.currentMealModel = meal
     
     navigationController?.pushViewController(detailVC, animated: true)
     }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+         view.endEditing(true)
+    }
+        
 }
         
 

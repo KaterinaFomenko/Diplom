@@ -90,6 +90,5 @@ class CoreDataStack {
             return false
         }
     }
-    
 }
 

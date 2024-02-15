@@ -10,14 +10,12 @@ import UIKit
 
 class DetailTableViewCell: UITableViewCell {
     let leftRight = 15
-    // MARK: - Properties
     
+    // MARK: - Properties
     private lazy var circleImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "circle.fill")
         imageView.contentMode = .scaleAspectFill
-        //imageView.layer.cornerRadius = 12.0
-        //imageView.layer.masksToBounds = true
         
         return imageView
     }()
@@ -48,7 +46,6 @@ class DetailTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

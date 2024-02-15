@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 
 class ListIconCell: UITableViewCell {
-   
     private lazy var imageViewLogo: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Image")
@@ -84,12 +83,10 @@ class ListIconCell: UITableViewCell {
         }
         
         imageViewLogo.snp.makeConstraints { make in
-            
             make.height.equalToSuperview().offset(-20)
             make.width.equalTo(40)
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().inset(10)
-         
         }
         
         titleLabel.snp.makeConstraints { make in

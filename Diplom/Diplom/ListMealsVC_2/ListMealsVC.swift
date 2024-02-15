@@ -8,32 +8,32 @@
 import UIKit
 
 class ListMealsVC: UICollectionViewController {
-    let listMealsViewModel = ListMealsViewModel()
+    let listMealsDataManager = ListMealsDataManager()
     var cellHeight: CGFloat = 128
-    let pad: CGFloat = 40
+    let CELLPAD: CGFloat = 40
     var selectedCategory = ""
-    // let itemsPerRow: CGFloat = 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         registerCell()
         configureCollectionView()
-        listMealsViewModel.listMealsVC = self
-        listMealsViewModel.loadData(categoryId: selectedCategory)
+        listMealsDataManager.listMealsVC = self
+        listMealsDataManager.loadData(categoryId: selectedCategory)
     }
     
-    func configureCollectionView() {
+    private func configureCollectionView() {
         let flowLayout = UICollectionViewFlowLayout()
         
-        let cellWidth = collectionView.bounds.width - pad
-        cellHeight = collectionView.bounds.width - pad
+        let cellWidth = collectionView.bounds.width - CELLPAD
+        cellHeight = collectionView.bounds.width - CELLPAD
         flowLayout.itemSize = CGSize(width: cellWidth, height: cellWidth)
         collectionView.collectionViewLayout = flowLayout
         
         collectionView.showsVerticalScrollIndicator = true
     }
     
-    func registerCell() {
+    private func registerCell() {
         collectionView.register(SelectCategoriesCell.self, forCellWithReuseIdentifier: "selectCategoriesCell")
     }
     
@@ -44,12 +44,13 @@ class ListMealsVC: UICollectionViewController {
     }
     
     // MARK: UICollectionViewDataSource
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return listMealsViewModel.getCount()
+        return listMealsDataManager.getCount()
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -57,7 +58,7 @@ class ListMealsVC: UICollectionViewController {
         
         cell.configureUI()
         let row = indexPath.row
-        let meal = listMealsViewModel.getMeal(index: row)
+        let meal = listMealsDataManager.getMeal(index: row)
         cell.setWithWebImage(model: meal)
         return cell
     }
@@ -66,7 +67,7 @@ class ListMealsVC: UICollectionViewController {
         guard let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailVC") as? DetailVC else { return }
         
                 let number = indexPath.row
-                let meal = listMealsViewModel.getMeal(index: number)
+                let meal = listMealsDataManager.getMeal(index: number)
                 detailVC.currentMealModel = meal
         
         navigationController?.pushViewController(detailVC, animated: true)
@@ -80,18 +81,11 @@ extension ListMealsVC: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return pad / 2
+        return CELLPAD / 2
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return pad / 2
+        return CELLPAD / 2
     }
 }
 
-//        cell.backgroundColor = .white
-//        cell.layer.cornerRadius = 8
-//        cell.layer.shadowColor = UIColor.black.cgColor
-//        cell.layer.shadowOffset = CGSize(width: 0, height: 4)
-//        cell.layer.shadowOpacity = 0.4
-//        cell.layer.shadowRadius = 8
-//        cell.clipsToBounds = false

@@ -12,13 +12,12 @@ import SDWebImage
 
 class DetailVC: UIViewController {
     var currentMealModel: CategoriesModel?
-    
     var detailDataManager = DetailDataManager()
     var isInFavoriteList = false
+  
     // MARK: - Properties
-    
     @IBOutlet weak var mealImageView: UIImageView!
-    
+  
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var youTubeButton: UIButton!
     @IBOutlet weak var mealTitleLabel: UILabel!
@@ -36,10 +35,10 @@ class DetailVC: UIViewController {
     @IBOutlet weak var heightGroupDescriptionView: NSLayoutConstraint!
     @IBOutlet weak var heightIngredientsTitleLabel: NSLayoutConstraint!
     
-//    @IBAction func favoriteActionButton(_ sender: UIButton) {
-//        sender.setImage(UIImage(named: "favorite_red"), for: .normal)
-//        let saveRecipe = CoreDataStack.save(CategoriesModel())
-//    }
+    @IBAction func favoriteActionButton(_ sender: UIButton) {
+        sender.setImage(UIImage(named: "favorite_red"), for: .normal)
+        let saveRecipe = CoreDataStack.save(CategoriesModel())
+    }
     
     @IBAction func youTubeActionButton(_ sender: Any) {
         openYouTubeLink(linkStr: detailDataManager.mealDetail?.strYoutube ?? "")
@@ -51,13 +50,14 @@ class DetailVC: UIViewController {
         
         registerCell()
         configureImageView()
+        addFavoriteNavButton()
+        checkIsInFavoriteList()
+        
         tableViewIngredients.delegate = self
         tableViewIngredients.dataSource = self
-        addFavoriteNavButton()
         
         detailDataManager.detailVC = self
-        detailDataManager.detailLoadData(idMeal: currentMealModel?.categoryId ?? "") 
-        checkIsInFavoriteList()
+        detailDataManager.detailLoadData(idMeal: currentMealModel?.categoryId ?? "")
     }
     
     func update() {
@@ -86,16 +86,8 @@ class DetailVC: UIViewController {
    // MARK: - Private methods
 
     func configureImageView() {
-      //  self.backgroundColor = .white
-     //   let groupView: UIView = self.contentView ?? UIView()
-        mealImageView.frame.size = CGSize(width: 200, height: 100) //????
-        mealImageView.layer.cornerRadius = 8
+        mealImageView.layer.cornerRadius = 12
         mealImageView.layer.masksToBounds = true
-        
-        mealImageView.layer.shadowColor = UIColor.black.cgColor
-        mealImageView.layer.shadowOffset = CGSize(width: 0, height: 4)
-        mealImageView.layer.shadowOpacity = 0.4
-        mealImageView.layer.shadowRadius = 8
     }
     
     func openYouTubeLink(linkStr: String) {
@@ -106,15 +98,16 @@ class DetailVC: UIViewController {
     
     func addFavoriteNavButton() {
         let image = UIImage(named: "favorite")
-      //  image = image?.withRenderingMode(.alwaysOriginal)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style:.plain, target: self, action: #selector(self.favoriteAction))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image,
+                                                                 style:.plain,
+                                                                 target: self,
+                                                                 action: #selector(self.favoriteAction))
     }
     
     func checkIsInFavoriteList() {
         isInFavoriteList = detailDataManager.isInFavoriteList(mealId: currentMealModel?.categoryId ?? "")
         if isInFavoriteList {
-            var image = UIImage(named: "favorite_red")
-            //image = image?.withRenderingMode(.alwaysOriginal)
+            let image = UIImage(named: "favorite_red")
             self.navigationItem.rightBarButtonItem?.image = image
         }
     }
@@ -124,13 +117,12 @@ class DetailVC: UIViewController {
             //remove from CoreData
             detailDataManager.deleteFromCoreData(meal: currentMealModel)
             isInFavoriteList = false
-            var image = UIImage(named: "favorite")
+            let image = UIImage(named: "favorite")
             self.navigationItem.rightBarButtonItem?.image = image
-            //image = image?.withRenderingMode(.alwaysOriginal)
+    
         } else {
             //add CoreData
-            var image = UIImage(named: "favorite_red")
-            //image = image?.withRenderingMode(.alwaysOriginal)
+            let image = UIImage(named: "favorite_red")
             self.navigationItem.rightBarButtonItem?.image = image
        
             detailDataManager.saveToCoreData(meal: currentMealModel)
@@ -144,7 +136,7 @@ class DetailVC: UIViewController {
     
     func updateDescriptionHeight() {
         descriptionTextView.text = detailDataManager.mealDetail?.strInstructions
-        descriptionTextView.font = UIFont.systemFont(ofSize: 16)
+        descriptionTextView.font = UIFont.systemFont(ofSize: 17)
         
         let sizeThatFits = descriptionTextView.sizeThatFits(CGSize(width: descriptionTextView.frame.width, height: CGFloat.greatestFiniteMagnitude))
         

@@ -14,7 +14,6 @@ class DetailDataManager {
     var ingredients: [IngredientModel] = []
     
     func detailLoadData(idMeal: String) {
-
         ApiManager().getDetailOfMeal(mealId: idMeal, completion: {(dataArray, error) -> () in
             self.mealDetail = dataArray.first
             self.loadIngredients()
@@ -80,7 +79,7 @@ class DetailDataManager {
         let i19 = IngredientModel(titleName: mealDetail?.strIngredient19, amount: mealDetail?.strMeasure19)
         ingredients.append(i19)
         let i20 = IngredientModel(titleName: mealDetail?.strIngredient20, amount: mealDetail?.strMeasure20)
-        ingredients.append(i20)
+            ingredients.append(i20)
         
         ingredients = ingredients.filter { ($0.titleName?.count ?? 0) > 1  }
     }

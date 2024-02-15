@@ -15,4 +15,4 @@ struct CategoriesModel {
 
 
 
-//  var isFavourite: Bool
+

@@ -36,7 +36,6 @@ private let titleArray = ["Beef",
                            "Vegan",
                            "Vegetarian"]
     
-    
     private var categoriesArray: [CategoriesModel] = []
     
     init() {

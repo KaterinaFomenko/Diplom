@@ -12,19 +12,17 @@ class FavoriteVC: UIViewController {
     var cellHeight: CGFloat = 128
     let CELLPAD: CGFloat = 40
 
-    var listMealsViewModel = ListMealsViewModel()
+    var listMealsViewModel = ListMealsDataManager()
     var favoriteDataManager = FavoriteDataManager()
     
     @IBOutlet weak var favoriteCollectionView: UICollectionView!
     
         override func viewDidLoad() {
         super.viewDidLoad()
-        // configureCollectionView()
         registerCell()
         
         favoriteDataManager.favoriteVC = self
         configureCollectionView()
-        //favoriteDataManager.getFetchAll()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -36,11 +34,11 @@ class FavoriteVC: UIViewController {
         favoriteCollectionView.reloadData()
     }
     
-    func registerCell() {
+    private func registerCell() {
         favoriteCollectionView.register(SelectCategoriesCell.self, forCellWithReuseIdentifier: "selectCategoriesCell")
     }
     
-    func configureCollectionView() {
+    private func configureCollectionView() {
         favoriteCollectionView.delegate = self
         favoriteCollectionView.dataSource = self
         let flowLayout = UICollectionViewFlowLayout()
@@ -65,7 +63,6 @@ extension FavoriteVC: UICollectionViewDataSource, UICollectionViewDelegate {
         guard let cell = collectionView.dequeueReusableCell (withReuseIdentifier: "selectCategoriesCell", for: indexPath) as? SelectCategoriesCell else { return UICollectionViewCell() }
         
         cell.configureUI()
-        cell.getArrayFavoriteRecipes()
         let row = indexPath.row
         let meal = favoriteDataManager.getMeal(index: row)
         cell.setWithWebImage(model: meal)

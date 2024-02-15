@@ -8,8 +8,6 @@
 import Foundation
 import UIKit
 
-
-
 struct MealListAPIRoot: Decodable {
     let meals: [MealListAPIModel]
 }
@@ -23,9 +21,8 @@ class ApiManager {
     func getListOfMeal(category: String, completion: @escaping(_ data: [MealListAPIModel],_ error: String)->()) {
         
         guard let url = URL(string: baseUrlStr + apiFilterStr + category) else { return }
-        var request = URLRequest(url: url)
-   //     request.setValue( "application/json", forHTTPHeaderField: "Content-Type")
-        
+        let request = URLRequest(url: url)
+
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                 //print("Данные::: \(data)")
@@ -47,7 +44,6 @@ class ApiManager {
         guard let url = URL(string: baseUrlStr + apiDetailStr + mealId) else { return }
         
         let request = URLRequest(url: url)
-      //  request.setValue( "application/json", forHTTPHeaderField: "Content-Type")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
@@ -66,11 +62,10 @@ class ApiManager {
     }
     
     func getSearchOfMeal(category: String, completion: @escaping(_ data: [MealListAPIModel],_ error: String)->()) {
-        let str = baseUrlStr + apiSearchStr + category
+     
         guard let url = URL(string: baseUrlStr + apiSearchStr + category) else { return }
-        var request = URLRequest(url: url)
-      //  request.setValue( "application/json", forHTTPHeaderField: "Content-Type")
-        
+        let request = URLRequest(url: url)
+      
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                 //print("Данные::: \(data)")

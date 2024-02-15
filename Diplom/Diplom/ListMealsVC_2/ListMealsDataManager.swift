@@ -1,5 +1,5 @@
 //
-//  ListMealsViewModel.swift
+//  ListMealsDataManager.swift
 //  Diplom
 //
 //  Created by Katerina on 29/01/2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ListMealsViewModel {
+class ListMealsDataManager {
     
     var listMealsVC: ListMealsVC?
     var mealsArray: [CategoriesModel] = []

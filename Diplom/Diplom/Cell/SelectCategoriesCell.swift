@@ -9,7 +9,6 @@ import UIKit
 import SDWebImage
 
 class SelectCategoriesCell: UICollectionViewCell {
-    
     private lazy var groupView: UIView = {
         var groupView = UIView()
         
@@ -31,8 +30,8 @@ class SelectCategoriesCell: UICollectionViewCell {
         let titleFrame = UIView()
         titleFrame.backgroundColor = .systemGray6
         
-        titleFrame.layer.cornerRadius = 8.0
-        titleFrame.layer.masksToBounds = false
+       // titleFrame.layer.cornerRadius = 8.0
+       // titleFrame.layer.masksToBounds = false
         
         titleFrame.layer.shadowColor = UIColor.lightGray.cgColor
         titleFrame.layer.shadowOffset = CGSize(width: 0, height: 3.0)
@@ -67,7 +66,7 @@ class SelectCategoriesCell: UICollectionViewCell {
     }
     
     override func layoutSubviews() {
-            //  super.layoutSubviews()
+              super.layoutSubviews()
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 8).cgPath
     }
 
@@ -83,22 +82,10 @@ class SelectCategoriesCell: UICollectionViewCell {
         labelBGView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
     }
     
-    func getArrayFavoriteRecipes() {
-        
-    }
-    
     func configureUI() {
         self.backgroundColor = .white
-        let groupView: UIView = self.contentView
-        groupView.layer.cornerRadius = 8
-        groupView.layer.masksToBounds = true
-        
-        groupView.layer.shadowColor = UIColor.black.cgColor
-        groupView.layer.shadowOffset = CGSize(width: 0, height: 4)
-        groupView.layer.shadowOpacity = 0.4
-        groupView.layer.shadowRadius = 8
-       
-        //clipsToBounds = false
+        self.layer.cornerRadius = 12
+        self.clipsToBounds = true
     }
     
     func setupUI() {

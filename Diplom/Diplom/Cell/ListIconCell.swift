@@ -8,8 +8,11 @@
 import Foundation
 import UIKit
 import SnapKit
+import SDWebImage
 
 class ListIconCell: UITableViewCell {
+    let baseImageUrl = "https://www.themealdb.com/images/category/"
+    
     private lazy var imageViewLogo: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Image")
@@ -73,6 +76,13 @@ class ListIconCell: UITableViewCell {
         titleLabel.text = category.title
     }
     
+    func setCellWithWebImage(category: CategoriesModel) {
+        let urlStr = baseImageUrl + category.categoryId.lowercased() + ".png"
+        imageViewLogo.sd_setImage(with: URL(string: urlStr ), placeholderImage: UIImage(named: "Placeholder"))
+        
+        titleLabel.text = category.title
+    }
+    
     private func setupConstraints() {
         grayRec.snp.makeConstraints { make in
             make.height.equalTo(50)
@@ -90,12 +100,9 @@ class ListIconCell: UITableViewCell {
         }
         
         titleLabel.snp.makeConstraints { make in
-            //make.edges.size.equalTo(grayRec).inset(5)
-            // make.leading.equalTo(imageViewLogo.snp.trailing)
             make.trailing.equalToSuperview().inset(10)
             make.leading.equalTo(imageViewLogo.snp.trailing).offset(20)
             make.centerY.equalToSuperview()
-            
         }
     }
 }

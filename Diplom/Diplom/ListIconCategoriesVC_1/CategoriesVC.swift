@@ -1,5 +1,5 @@
 //
-//  ListIconCategoryVC.swift
+//  CategoriesVC.swift
 //  Diplom
 //
 //  Created by Katerina on 27/01/2024.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class ListIconCategoryVC: UIViewController {
+class CategoriesVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    let categoriesViewModel = SelectedCategoriesVModel()
+    let categoriesDataManager = CategoriesDataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,34 +27,33 @@ class ListIconCategoryVC: UIViewController {
     func openMealVC(indexPath: IndexPath) {
         guard let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "selectedCategoriesVC") as? ListMealsVC else { return }
         
-        let category = categoriesViewModel.getCategory(index: indexPath.row)
+        let category = categoriesDataManager.getCategory(index: indexPath.row)
         secondViewController.selectedCategory = category.categoryId
         self.navigationController?.pushViewController(secondViewController, animated: true)
     }
 }
 
-extension ListIconCategoryVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoriesViewModel.getCount()
-    }
-    
+extension CategoriesVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return categoriesDataManager.getCount()
+    }
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "listIconCell", for: indexPath) as? ListIconCell else { return UITableViewCell() }
         
-        var cellData = categoriesViewModel.getCategory(index: indexPath.row)
-        cellData.imageName = "icon-" +  cellData.categoryId.lowercased()
-        print(cellData.imageName)
+        var cellData = categoriesDataManager.getCategory(index: indexPath.row)
+      
         cell.setCell(category: cellData)
         
         return cell
     }
 
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            print("tap cell number \(indexPath.row).")
             openMealVC(indexPath: indexPath)
     }
 }

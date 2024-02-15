@@ -6,8 +6,9 @@
 //
 
 import Foundation
-class SelectedCategoriesVModel {
-    
+class CategoriesDataManager {
+var listIconCategory: CategoriesVC?
+
 private let categoriesIdArray = ["Beef",
                        "Breakfast",
                        "Chicken",
@@ -46,15 +47,14 @@ private let titleArray = ["Beef",
             model.imageName = categoriesIdArray[i]
             
             categoriesArray.append(model)
-            print("categoriesArray \(categoriesArray)")
         }
     }
     
-    func  getCategory(index: Int) -> CategoriesModel {
-        return categoriesArray[index] 
+     func  getCategory(index: Int) -> CategoriesModel {
+        return categoriesArray[index]
     }
     
-    func getCount() -> Int {
+     func getCount() -> Int {
         return categoriesArray.count
     }
 }

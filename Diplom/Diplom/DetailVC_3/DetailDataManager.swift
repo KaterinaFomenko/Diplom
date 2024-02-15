@@ -36,9 +36,7 @@ class DetailDataManager {
         CoreDataStack.delete(meal)
     }
    
-    
     func loadIngredients() {
-        
         let i1 = IngredientModel(titleName: mealDetail?.strIngredient1, amount: mealDetail?.strMeasure1 )
         ingredients.append(i1)
         let i2 = IngredientModel(titleName: mealDetail?.strIngredient2, amount: mealDetail?.strMeasure2)
@@ -73,7 +71,6 @@ class DetailDataManager {
         ingredients.append(i16)
         let i17 = IngredientModel(titleName: mealDetail?.strIngredient17, amount: mealDetail?.strMeasure17)
         ingredients.append(i17)
-        
         let i18 = IngredientModel(titleName: mealDetail?.strIngredient18, amount: mealDetail?.strMeasure18)
         ingredients.append(i18)
         let i19 = IngredientModel(titleName: mealDetail?.strIngredient19, amount: mealDetail?.strMeasure19)

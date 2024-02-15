@@ -424,7 +424,7 @@
         <!--Categories-->
         <scene sceneID="pax-UZ-2Wz">
             <objects>
-                <viewController id="U00-xJ-d5q" customClass="ListIconCategoryVC" customModule="Diplom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="U00-xJ-d5q" customClass="CategoriesVC" customModule="Diplom" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Ga-RX-prG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -11,7 +11,7 @@
 		06668C222B7B64390025EBCB /* ExtColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06668C212B7B64390025EBCB /* ExtColor.swift */; };
 		066ABA252B62AD5700DB54C6 /* ListMealsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066ABA242B62AD5700DB54C6 /* ListMealsVC.swift */; };
 		066ABA342B62B5C100DB54C6 /* SelectCategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066ABA332B62B5C100DB54C6 /* SelectCategoriesCell.swift */; };
-		066ABA3B2B62D3CC00DB54C6 /* SelectedCategoriesVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066ABA3A2B62D3CC00DB54C6 /* SelectedCategoriesVModel.swift */; };
+		066ABA3B2B62D3CC00DB54C6 /* CategoriesDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066ABA3A2B62D3CC00DB54C6 /* CategoriesDataManager.swift */; };
 		066ABA422B62D65C00DB54C6 /* CategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066ABA412B62D65C00DB54C6 /* CategoriesModel.swift */; };
 		069289A02B74C2170018112B /* SearchDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0692899F2B74C2170018112B /* SearchDataManager.swift */; };
 		06AB9BE82B460020000E229C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AB9BE72B460020000E229C /* AppDelegate.swift */; };
@@ -20,7 +20,7 @@
 		06AB9BF12B460024000E229C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06AB9BF02B460024000E229C /* Assets.xcassets */; };
 		06AB9BF42B460024000E229C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06AB9BF22B460024000E229C /* LaunchScreen.storyboard */; };
 		06CD9B802B64E76300613895 /* ListIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD9B7F2B64E76300613895 /* ListIconCell.swift */; };
-		06CD9B882B64F2E400613895 /* ListIconCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD9B872B64F2E400613895 /* ListIconCategoryVC.swift */; };
+		06CD9B882B64F2E400613895 /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD9B872B64F2E400613895 /* CategoriesVC.swift */; };
 		06CD9B912B65402700613895 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 06CD9B902B65402700613895 /* SnapKit */; };
 		06CD9BA52B68351300613895 /* ListMealsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD9BA42B68351300613895 /* ListMealsDataManager.swift */; };
 		06CD9BAD2B68E6CE00613895 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CD9BAC2B68E6CE00613895 /* ApiManager.swift */; };
@@ -45,7 +45,7 @@
 		06668C212B7B64390025EBCB /* ExtColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtColor.swift; sourceTree = "<group>"; };
 		066ABA242B62AD5700DB54C6 /* ListMealsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMealsVC.swift; sourceTree = "<group>"; };
 		066ABA332B62B5C100DB54C6 /* SelectCategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoriesCell.swift; sourceTree = "<group>"; };
-		066ABA3A2B62D3CC00DB54C6 /* SelectedCategoriesVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoriesVModel.swift; sourceTree = "<group>"; };
+		066ABA3A2B62D3CC00DB54C6 /* CategoriesDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDataManager.swift; sourceTree = "<group>"; };
 		066ABA412B62D65C00DB54C6 /* CategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
 		0692899F2B74C2170018112B /* SearchDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataManager.swift; sourceTree = "<group>"; };
 		06AB9BE42B460020000E229C /* Diplom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diplom.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,7 +56,7 @@
 		06AB9BF32B460024000E229C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		06AB9BF52B460024000E229C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06CD9B7F2B64E76300613895 /* ListIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIconCell.swift; sourceTree = "<group>"; };
-		06CD9B872B64F2E400613895 /* ListIconCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListIconCategoryVC.swift; sourceTree = "<group>"; };
+		06CD9B872B64F2E400613895 /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		06CD9BA42B68351300613895 /* ListMealsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMealsDataManager.swift; sourceTree = "<group>"; };
 		06CD9BAC2B68E6CE00613895 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		06CD9BC22B6CBEC100613895 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
@@ -107,8 +107,8 @@
 		066ABA3D2B62D3D600DB54C6 /* ListIconCategoriesVC_1 */ = {
 			isa = PBXGroup;
 			children = (
-				06CD9B872B64F2E400613895 /* ListIconCategoryVC.swift */,
-				066ABA3A2B62D3CC00DB54C6 /* SelectedCategoriesVModel.swift */,
+				06CD9B872B64F2E400613895 /* CategoriesVC.swift */,
+				066ABA3A2B62D3CC00DB54C6 /* CategoriesDataManager.swift */,
 			);
 			path = ListIconCategoriesVC_1;
 			sourceTree = "<group>";
@@ -311,7 +311,7 @@
 				06F8EE482B6EB69A003BF050 /* DetailDataManager.swift in Sources */,
 				066ABA252B62AD5700DB54C6 /* ListMealsVC.swift in Sources */,
 				06AB9BE82B460020000E229C /* AppDelegate.swift in Sources */,
-				066ABA3B2B62D3CC00DB54C6 /* SelectedCategoriesVModel.swift in Sources */,
+				066ABA3B2B62D3CC00DB54C6 /* CategoriesDataManager.swift in Sources */,
 				06F8EE502B70142E003BF050 /* IngredientModel.swift in Sources */,
 				06CD9BA52B68351300613895 /* ListMealsDataManager.swift in Sources */,
 				06E310D22B77D57700912E0A /* CategoriesEntity+CoreDataProperties.swift in Sources */,
@@ -322,7 +322,7 @@
 				06AB9BEA2B460020000E229C /* SceneDelegate.swift in Sources */,
 				0665924E2B7359EC00043CB1 /* SearchVC.swift in Sources */,
 				06E310CD2B77D0BA00912E0A /* Model.xcdatamodeld in Sources */,
-				06CD9B882B64F2E400613895 /* ListIconCategoryVC.swift in Sources */,
+				06CD9B882B64F2E400613895 /* CategoriesVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -124,8 +124,11 @@ class DetailVC: UIViewController {
             //add CoreData
             let image = UIImage(named: "favorite_red")
             self.navigationItem.rightBarButtonItem?.image = image
-       
-            detailDataManager.saveToCoreData(meal: currentMealModel)
+            let isInFavoriteList2 = detailDataManager.isInFavoriteList(mealId: currentMealModel?.categoryId ?? "")
+            if !isInFavoriteList2 {
+                detailDataManager.saveToCoreData(meal: currentMealModel)
+                isInFavoriteList = true
+            }
         }
     }
     

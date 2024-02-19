@@ -18,7 +18,7 @@ class DetailVC: UIViewController {
     // MARK: - Properties
     @IBOutlet weak var mealImageView: UIImageView!
   
-    @IBOutlet weak var favoriteButton: UIButton!
+  //  @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var youTubeButton: UIButton!
     @IBOutlet weak var mealTitleLabel: UILabel!
     @IBOutlet weak var areaLabel: UILabel!
@@ -37,7 +37,7 @@ class DetailVC: UIViewController {
     
     @IBAction func favoriteActionButton(_ sender: UIButton) {
         sender.setImage(UIImage(named: "favorite_red"), for: .normal)
-        let saveRecipe = CoreDataStack.save(CategoriesModel())
+        CoreDataStack.save(CategoriesModel())
     }
     
     @IBAction func youTubeActionButton(_ sender: Any) {
@@ -80,7 +80,7 @@ class DetailVC: UIViewController {
             self.updateDescriptionHeight()
             
         }
-        print(detailDataManager.mealDetail?.strMeal)
+        print(detailDataManager.mealDetail?.strMeal ?? "")
     }
     
    // MARK: - Private methods
@@ -124,8 +124,8 @@ class DetailVC: UIViewController {
             //add CoreData
             let image = UIImage(named: "favorite_red")
             self.navigationItem.rightBarButtonItem?.image = image
-            let isInFavoriteList2 = detailDataManager.isInFavoriteList(mealId: currentMealModel?.categoryId ?? "")
-            if !isInFavoriteList2 {
+            let isInFavorite = detailDataManager.isInFavoriteList(mealId: currentMealModel?.categoryId ?? "")
+            if !isInFavorite {
                 detailDataManager.saveToCoreData(meal: currentMealModel)
                 isInFavoriteList = true
             }
@@ -158,19 +158,18 @@ class DetailVC: UIViewController {
 }
 
     extension DetailVC: UITableViewDelegate, UITableViewDataSource {
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return detailDataManager.ingredients.count
-        }
-        
         func numberOfSectionsInTableView(tableView: UITableView) -> Int {
             return 1
+        }
+        
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return detailDataManager.ingredients.count
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "detailTableViewCell", for: indexPath) as? DetailTableViewCell else { return UITableViewCell() }
             
-            let row = indexPath.row
-            let ingredient = detailDataManager.ingredients[row]
+            let ingredient = detailDataManager.ingredients[indexPath.row]
             cell.setData(ingredient: ingredient)
             
             return cell

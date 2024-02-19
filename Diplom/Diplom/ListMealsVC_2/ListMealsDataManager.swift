@@ -9,22 +9,18 @@ import Foundation
 
 class ListMealsDataManager {
     
-    var listMealsVC: ListMealsVC?
+    weak var listMealsVC: ListMealsVC?
     var mealsArray: [CategoriesModel] = []
     
     func loadData(categoryId: String) {
         ApiManager().getListOfMeal(category: categoryId, completion: { (data, error) -> () in
-          
+            
             self.mealsArray.removeAll()
             for item in data {
                 self.mealsArray.append(item.toCategoryModel())
             }
             self.listMealsVC?.updateData()
         })
-    }
-    
-    func getMeal(index: Int) -> CategoriesModel {
-        return mealsArray[index]
     }
     
     func getCount() -> Int {

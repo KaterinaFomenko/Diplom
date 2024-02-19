@@ -15,11 +15,8 @@ class ListIconCell: UITableViewCell {
     
     private lazy var imageViewLogo: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "Image")
+        imageView.image = UIImage(named: "Placeholder")
         imageView.contentMode = .scaleAspectFill
-        
-       // imageView.layer.cornerRadius = 12.0
-       // imageView.layer.masksToBounds = false
         
         return imageView
     }()
@@ -79,13 +76,12 @@ class ListIconCell: UITableViewCell {
     func setCellWithWebImage(category: CategoriesModel) {
         let urlStr = baseImageUrl + category.categoryId.lowercased() + ".png"
         imageViewLogo.sd_setImage(with: URL(string: urlStr ), placeholderImage: UIImage(named: "Placeholder"))
-        
         titleLabel.text = category.title
     }
     
     private func setupConstraints() {
         grayRec.snp.makeConstraints { make in
-            make.height.equalTo(50)
+            make.height.equalTo(70)
             make.leading.equalToSuperview().inset(20)
             make.trailing.equalToSuperview().inset(20)
             make.top.equalToSuperview().offset(20)
@@ -93,15 +89,14 @@ class ListIconCell: UITableViewCell {
         }
         
         imageViewLogo.snp.makeConstraints { make in
-            make.height.equalToSuperview().offset(-20)
-            make.width.equalTo(40)
+            make.width.height.equalTo(70)
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().inset(10)
+            make.leading.equalToSuperview().offset(20)
         }
         
         titleLabel.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(10)
-            make.leading.equalTo(imageViewLogo.snp.trailing).offset(20)
+            make.leading.equalTo(imageViewLogo.snp.trailing).offset(30)
             make.centerY.equalToSuperview()
         }
     }

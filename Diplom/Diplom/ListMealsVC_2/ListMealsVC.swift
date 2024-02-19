@@ -9,7 +9,6 @@ import UIKit
 
 class ListMealsVC: UICollectionViewController {
     let listMealsDataManager = ListMealsDataManager()
-    var cellHeight: CGFloat = 128
     let CELLPAD: CGFloat = 40
     var selectedCategory = ""
     
@@ -24,12 +23,9 @@ class ListMealsVC: UICollectionViewController {
     
     private func configureCollectionView() {
         let flowLayout = UICollectionViewFlowLayout()
-        
         let cellWidth = collectionView.bounds.width - CELLPAD
-        cellHeight = collectionView.bounds.width - CELLPAD
-        flowLayout.itemSize = CGSize(width: cellWidth, height: cellWidth)
+        flowLayout.itemSize = CGSize(width: cellWidth, height: cellWidth / 2)
         collectionView.collectionViewLayout = flowLayout
-        
         collectionView.showsVerticalScrollIndicator = true
     }
     
@@ -57,8 +53,7 @@ class ListMealsVC: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell (withReuseIdentifier: "selectCategoriesCell", for: indexPath) as? SelectCategoriesCell else { return UICollectionViewCell() }
         
         cell.configureUI()
-        let row = indexPath.row
-        let meal = listMealsDataManager.getMeal(index: row)
+        let meal = listMealsDataManager.mealsArray[indexPath.row]
         cell.setWithWebImage(model: meal)
         return cell
     }
@@ -66,9 +61,8 @@ class ListMealsVC: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailVC") as? DetailVC else { return }
         
-                let number = indexPath.row
-                let meal = listMealsDataManager.getMeal(index: number)
-                detailVC.currentMealModel = meal
+        let meal = listMealsDataManager.mealsArray[indexPath.row]
+        detailVC.currentMealModel = meal
         
         navigationController?.pushViewController(detailVC, animated: true)
     }

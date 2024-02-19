@@ -7,7 +7,6 @@
 
 import Foundation
 class CategoriesDataManager {
-var listIconCategory: CategoriesVC?
 
 private let categoriesIdArray = ["Beef",
                        "Breakfast",
@@ -37,7 +36,7 @@ private let titleArray = ["Beef",
                            "Vegan",
                            "Vegetarian"]
     
-    private var categoriesArray: [CategoriesModel] = []
+var categoriesArray: [CategoriesModel] = []
     
     init() {
         for (i, _) in categoriesIdArray.enumerated() {
@@ -48,10 +47,6 @@ private let titleArray = ["Beef",
             
             categoriesArray.append(model)
         }
-    }
-    
-     func  getCategory(index: Int) -> CategoriesModel {
-        return categoriesArray[index]
     }
     
      func getCount() -> Int {

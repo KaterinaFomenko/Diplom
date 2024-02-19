@@ -12,12 +12,11 @@ class FavoriteVC: UIViewController {
     var cellHeight: CGFloat = 128
     let CELLPAD: CGFloat = 40
 
-    var listMealsViewModel = ListMealsDataManager()
     var favoriteDataManager = FavoriteDataManager()
     
     @IBOutlet weak var favoriteCollectionView: UICollectionView!
     
-        override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         registerCell()
         
@@ -52,34 +51,31 @@ class FavoriteVC: UIViewController {
     }
 }
 
-    // MARK: UICollectionViewDataSource
+// MARK: UICollectionViewDataSource
 extension FavoriteVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return favoriteDataManager.getCount()
     }
-
-     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell (withReuseIdentifier: "selectCategoriesCell", for: indexPath) as? SelectCategoriesCell else { return UICollectionViewCell() }
         
         cell.configureUI()
-        let row = indexPath.row
-        let meal = favoriteDataManager.getMeal(index: row)
+        let meal = favoriteDataManager.allFavoritesRecipes[indexPath.row]
         cell.setWithWebImage(model: meal)
         return cell
     }
-
-     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailVC") as? DetailVC else { return }
         
-                let number = indexPath.row
-                let meal = favoriteDataManager.getMeal(index: number)
-            
-                detailVC.currentMealModel = meal
+        let meal = favoriteDataManager.allFavoritesRecipes[indexPath.row]
+        detailVC.currentMealModel = meal
         
         navigationController?.pushViewController(detailVC, animated: true)
-        }
     }
+}
 
 extension FavoriteVC: UICollectionViewDelegateFlowLayout {
     

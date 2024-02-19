@@ -68,7 +68,7 @@ class CoreDataStack {
         
         do {
             let result = try context.fetch(fetchRequest)
-            result.map { CategoriesModel(categoryId: $0.categoryId ?? "", title: $0.title ?? "", imageName: $0.imageName ?? "") }
+//            result.map { CategoriesModel(categoryId: $0.categoryId ?? "", title: $0.title ?? "", imageName: $0.imageName ?? "") }
             return result
         } catch {
             print("Fetch error: \(error.localizedDescription)")

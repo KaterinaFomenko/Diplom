@@ -8,9 +8,10 @@
 import UIKit
 
 class CategoriesVC: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
-    
     let categoriesDataManager = CategoriesDataManager()
+    
+    // MARK: - Properties
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +26,9 @@ class CategoriesVC: UIViewController {
     }
     
     func openMealVC(indexPath: IndexPath) {
-        guard let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "selectedCategoriesVC") as? ListMealsVC else { return }
+        guard let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "listMealsVC") as? ListMealsVC else { return }
         
-        let category = categoriesDataManager.getCategory(index: indexPath.row)
+        let category = categoriesDataManager.categoriesArray[indexPath.row]
         secondViewController.selectedCategory = category.categoryId
         self.navigationController?.pushViewController(secondViewController, animated: true)
     }
@@ -42,11 +43,10 @@ extension CategoriesVC: UITableViewDelegate, UITableViewDataSource {
         return categoriesDataManager.getCount()
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "listIconCell", for: indexPath) as? ListIconCell else { return UITableViewCell() }
         
-        var cellData = categoriesDataManager.getCategory(index: indexPath.row)
+        let cellData = categoriesDataManager.categoriesArray[indexPath.row]
       
         cell.setCell(category: cellData)
         

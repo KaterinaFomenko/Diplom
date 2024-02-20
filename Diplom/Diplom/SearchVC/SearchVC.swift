@@ -32,7 +32,7 @@ class SearchVC: UIViewController, UISearchBarDelegate {
         configureCollectionView()
         registerCell()
         searchDataManager.searchlVC = self
-        searchBar.placeholder = "Test"
+        searchBar.placeholder = "Eggs, potatoes, onion ..."
         searchBar.delegate = self
     }
     

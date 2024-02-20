@@ -125,6 +125,7 @@ class DetailVC: UIViewController {
             let image = UIImage(named: "favorite_red")
             self.navigationItem.rightBarButtonItem?.image = image
             let isInFavorite = detailDataManager.isInFavoriteList(mealId: currentMealModel?.categoryId ?? "")
+            // Protection from duplicate data
             if !isInFavorite {
                 detailDataManager.saveToCoreData(meal: currentMealModel)
                 isInFavoriteList = true

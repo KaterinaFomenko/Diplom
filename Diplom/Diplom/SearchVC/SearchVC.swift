@@ -60,7 +60,6 @@ class SearchVC: UIViewController, UISearchBarDelegate {
             searchBar.resignFirstResponder()
         }
     }
-    
 }
 // MARK: UICollectionViewDataSource
 

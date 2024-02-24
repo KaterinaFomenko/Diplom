@@ -56,8 +56,6 @@ class SelectCategoriesCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupUI()
-        configureUI()
     }
     
     func setWithWebImage(model: CategoriesModel) {

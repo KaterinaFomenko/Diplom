@@ -621,10 +621,9 @@
         <!--Navigation Controller-->
         <scene sceneID="1zo-P3-6My">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uwd-c7-gnD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="C38-Pu-1Mh" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" backIndicatorImage="navigationBar:Jmr-At-oZ9:backIndicatorImage" catalog="system" backIndicatorTransitionMaskImage="navigationBar:Jmr-At-oZ9:backIndicatorImage" id="Jmr-At-oZ9">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" backIndicatorImage="navigationBar:Jmr-At-oZ9:backIndicatorImage" backIndicatorTransitionMaskImage="navigationBar:Jmr-At-oZ9:backIndicatorImage" id="Jmr-At-oZ9">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -633,6 +632,7 @@
                         <segue destination="cYb-mQ-U5l" kind="relationship" relationship="rootViewController" id="6Nf-lK-zaX"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uwd-c7-gnD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4868" y="-688"/>
         </scene>
@@ -662,7 +662,7 @@
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
-        <image name="navigationBar:Jmr-At-oZ9:backIndicatorImage" catalog="system" width="128" height="72">
+        <image name="navigationBar:Jmr-At-oZ9:backIndicatorImage" width="128" height="72">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05T
 S2V5ZWRBcmNoaXZlctEICVRyb290gAGvEBELDBscIRkmKisyNThCSktPUlUkbnVsbNcNDg8QERITFBUW

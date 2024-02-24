@@ -17,8 +17,6 @@ class DetailVC: UIViewController {
   
     // MARK: - Properties
     @IBOutlet weak var mealImageView: UIImageView!
-  
-  //  @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var youTubeButton: UIButton!
     @IBOutlet weak var mealTitleLabel: UILabel!
     @IBOutlet weak var areaLabel: UILabel!

@@ -11,8 +11,6 @@ import SnapKit
 import SDWebImage
 
 class ListIconCell: UITableViewCell {
-    let baseImageUrl = "https://www.themealdb.com/images/category/"
-    
     private lazy var imageViewLogo: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Placeholder")
@@ -70,12 +68,6 @@ class ListIconCell: UITableViewCell {
     
     func setCell(category: CategoriesModel) {
         imageViewLogo.image = UIImage(named: category.imageName)
-        titleLabel.text = category.title
-    }
-    
-    func setCellWithWebImage(category: CategoriesModel) {
-        let urlStr = baseImageUrl + category.categoryId.lowercased() + ".png"
-        imageViewLogo.sd_setImage(with: URL(string: urlStr ), placeholderImage: UIImage(named: "Placeholder"))
         titleLabel.text = category.title
     }
     

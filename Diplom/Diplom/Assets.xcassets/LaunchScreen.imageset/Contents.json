@@ -1,8 +1,19 @@
 {
   "images" : [
     {
-      "filename" : "chad-montano-eeqbbemH9-c-unsplash.jpg",
-      "idiom" : "universal"
+      "filename" : "chad-montano-eeqbbemH9-c-unsplash@1x.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "chad-montano-eeqbbemH9-c-unsplash@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "chad-montano-eeqbbemH9-c-unsplash@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

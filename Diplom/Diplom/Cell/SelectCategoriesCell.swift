@@ -19,7 +19,6 @@ class SelectCategoriesCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Image")
         imageView.contentMode = .scaleAspectFill
-        
         imageView.layer.cornerRadius = 12.0
         imageView.layer.masksToBounds = false
         
@@ -29,10 +28,6 @@ class SelectCategoriesCell: UICollectionViewCell {
     private lazy var labelBGView: UIView = {
         let titleFrame = UIView()
         titleFrame.backgroundColor = .systemGray6
-        
-       // titleFrame.layer.cornerRadius = 8.0
-       // titleFrame.layer.masksToBounds = false
-        
         titleFrame.layer.shadowColor = UIColor.lightGray.cgColor
         titleFrame.layer.shadowOffset = CGSize(width: 0, height: 3.0)
         titleFrame.layer.shadowRadius = 1
@@ -65,17 +60,6 @@ class SelectCategoriesCell: UICollectionViewCell {
         configureUI()
     }
     
-    override func layoutSubviews() {
-              super.layoutSubviews()
-        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 8).cgPath
-    }
-
-    func set(model: CategoriesModel) {
-        titleLabel.text = model.title
-        imageView.image = UIImage(named: model.imageName)
-        labelBGView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-    }
-    
     func setWithWebImage(model: CategoriesModel) {
         titleLabel.text = model.title
         imageView.sd_setImage(with: URL(string: model.imageName), placeholderImage: UIImage(named: "Placeholder"))
@@ -96,7 +80,7 @@ class SelectCategoriesCell: UICollectionViewCell {
         
         setupConstraints()
     }
-  
+    
     func setupConstraints() {
         groupView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -115,9 +99,7 @@ class SelectCategoriesCell: UICollectionViewCell {
         titleLabel.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
             make.leading.trailing.equalToSuperview()
-            //make.centerY.equalToSuperview()
             make.height.equalTo(40)
         }
     }
-    
 }

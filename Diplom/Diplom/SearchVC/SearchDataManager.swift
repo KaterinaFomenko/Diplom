@@ -20,11 +20,7 @@ class SearchDataManager {
             searchlVC?.updateData()
         })
     }
-       
-    func getMeal(index: Int) -> CategoriesModel {
-        return mealsArray[index]
-    }
-    
+ 
     func getCount() -> Int {
         return mealsArray.count
     }
